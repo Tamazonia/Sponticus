@@ -10,10 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508170213) do
+ActiveRecord::Schema.define(version: 20170508203329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.string   "event_name"
+    t.string   "event_category"
+    t.text     "event_description"
+    t.string   "event_address_title"
+    t.string   "event_address_street"
+    t.integer  "event_address_postalcode"
+    t.string   "event_address_city"
+    t.integer  "organizer_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "url"
+    t.date     "date"
+    t.index ["organizer_id"], name: "index_events_on_organizer_id", using: :btree
+  end
+
+  create_table "organizers", force: :cascade do |t|
+    t.string   "organizer_name"
+    t.string   "organizer_address_title"
+    t.string   "organizer_address_street"
+    t.integer  "organizer_address_postalcode"
+    t.string   "organizer_address_city"
+    t.integer  "user_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["user_id"], name: "index_organizers_on_user_id", using: :btree
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.integer  "amount_tickets_to_sell"
+    t.integer  "ticket_price"
+    t.text     "ticket_details"
+    t.integer  "event_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "amount_of_tickets_sold"
+    t.index ["event_id"], name: "index_tickets_on_event_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -32,4 +71,7 @@ ActiveRecord::Schema.define(version: 20170508170213) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "events", "organizers"
+  add_foreign_key "organizers", "users"
+  add_foreign_key "tickets", "events"
 end
