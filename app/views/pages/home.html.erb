@@ -1,8 +1,7 @@
+<!-- banner -->
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(242,242,242,0.3) 0%, rgba(242,242,242,0.3) 50%), url('https://static.pexels.com/photos/109669/pexels-photo-109669.jpeg');">
   <div class="banner-content">
     <h2>Find today's Sponti Events</h2>
-
-
     <form action="" class="seach-form search">
       <select name="category" id="search_category" class="search-input" type="text" style="height:38px; background-color: white;">
         <option value="" >Category: All</option>
@@ -19,6 +18,26 @@
       </select>
       <a class="btn btn-primary">GET SPONTI</a>
    </form>
+  </div>
+</div>
+
+<!-- cards of todays events -->
+
+<div class="container">
+  <div class="row">
+  <% Events.all %>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+        <div class="card-category">Popular</div>
+        <div class="card-description">
+          <h2>Some stuff</h2>
+          <p>Very cool stuff, useful and smart</p>
+        </div>
+        <img class="card-user avatar" src="user.jpg">
+        <a class="card-link" href="#" ></a>
+      </div>
+    </div>
 
   </div>
+
 </div>
