@@ -1,2 +1,21 @@
-<h1>Events#new</h1>
-<p>Find me in app/views/events/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1>New Event</h1>
+
+          <%= simple_form_for [@organizer, @event] do |f| %>
+            <%= f.input :event_name, placeholder: "La Bohème", label: "Event Name" %>
+            <%= f.input :event_category, collection: ["Theater", "Concert", "Opera/Operette"], prompt: "Theater? Concert? Opera/Operette?" %>
+            <%= f.input :event_description, placeholder: "Describe the event", label: "Event Description" %>
+            <%= f.input :event_address_title, placeholder: "Gemeinhause Hinterpfufikon" , label: "Address Title" %>
+            <%= f.input :event_address_street, placeholder: "Hotzestrasse 29" , label: "Street" %>
+            <%= f.input :event_address_postalcode, placeholder: "8006", label: "Postal Code"  %>
+            <%= f.input :event_address_city, placeholder: "Zürich", label: "City" %>
+            <%= f.submit "Add Sponti Event", class: "btn btn-primary" %>
+          <% end %>
+
+
+        <br>
+    </div>
+  </div>
+</div>
