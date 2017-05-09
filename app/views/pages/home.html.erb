@@ -3,20 +3,26 @@
   <div class="banner-content">
     <h2>Find today's Sponti Events</h2>
     <form action="" class="seach-form search">
-      <select name="category" id="search_category" class="search-input" type="text" style="height:38px; background-color: white;">
-        <option value="" >Category: All</option>
-        <option value="" >Theater</option>
-        <option value="" >Opera/Operette</option>
-        <option value="" >Concert</option>
-        <option value="" >Other</option>
-      </select>
-      <select name="category" id="search_category" class="search-input" type="text" style="height:38px; background-color: white;">
-        <option value="" >Location: All</option>
-        <option value="" >Zurich City</option>
-        <option value="" >Zurich Canton</option>
-        <option value="" >Swiss-German</option>
-      </select>
-      <a class="btn btn-primary">GET SPONTI</a>
+      <!-- <div class="col-xs-12 col-sm-4"> -->
+        <select name="category" id="search_category" class="search-input" type="text" style="height:38px; background-color: white;">
+          <option value="" >Category: All</option>
+          <option value="" >Theater</option>
+          <option value="" >Opera/Operette</option>
+          <option value="" >Concert</option>
+          <option value="" >Other</option>
+        </select>
+      <!-- </div> -->
+      <!-- <div class="col-xs-12 col-sm-4"> -->
+        <select name="category" id="search_category" class="search-input" type="text" style="height:38px; background-color: white;">
+          <option value="" >Location: All</option>
+          <option value="" >Zurich City</option>
+          <option value="" >Zurich Canton</option>
+          <option value="" >Swiss-German</option>
+        </select>
+      <!-- </div> -->
+      <!-- <div class="col-xs-12 col-sm-4"> -->
+        <a class="btn btn-primary">GET SPONTI</a>
+      <!-- </div> -->
    </form>
   </div>
 </div>
@@ -25,19 +31,24 @@
 
 <div class="container">
   <div class="row">
-  <% Events.all %>
+  <h4> Todays Tickets with a special Sponti Price</h4>
+  <% events = Event.all %>
+  <% events = events.select {|event| event.tickets.count > 0} %>
+  <% events.each do |event| %>
     <div class="col-xs-12 col-sm-4">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-        <div class="card-category">Popular</div>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=event.url%>);">
+        <div class="card-category"> CHF <%= event.tickets.first.ticket_price %> </div>
         <div class="card-description">
-          <h2>Some stuff</h2>
-          <p>Very cool stuff, useful and smart</p>
+          <h2><%=event.event_name%></h2>
+          <p><%=event.organizer.organizer_name%></p>
         </div>
-        <img class="card-user avatar" src="user.jpg">
         <a class="card-link" href="#" ></a>
       </div>
     </div>
+  <% end %>
+
+
+
 
   </div>
-
 </div>
