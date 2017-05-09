@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508203329) do
+ActiveRecord::Schema.define(version: 20170509193141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170508203329) do
     t.integer  "organizer_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.string   "url"
+    t.string   "photo"
     t.date     "date"
     t.index ["organizer_id"], name: "index_events_on_organizer_id", using: :btree
   end
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 20170508203329) do
     t.index ["user_id"], name: "index_organizers_on_user_id", using: :btree
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.integer  "amount_tickets_purchased"
+    t.integer  "total_price"
+    t.integer  "user_id"
+    t.integer  "ticket_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["ticket_id"], name: "index_purchases_on_ticket_id", using: :btree
+    t.index ["user_id"], name: "index_purchases_on_user_id", using: :btree
+  end
+
   create_table "tickets", force: :cascade do |t|
     t.integer  "amount_tickets_to_sell"
     t.integer  "ticket_price"
@@ -50,7 +61,8 @@ ActiveRecord::Schema.define(version: 20170508203329) do
     t.integer  "event_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "amount_of_tickets_sold"
+    t.integer  "amount_tickets_sold"
+    t.integer  "amount_tickets_spare"
     t.index ["event_id"], name: "index_tickets_on_event_id", using: :btree
   end
 
@@ -73,5 +85,7 @@ ActiveRecord::Schema.define(version: 20170508203329) do
 
   add_foreign_key "events", "organizers"
   add_foreign_key "organizers", "users"
+  add_foreign_key "purchases", "tickets"
+  add_foreign_key "purchases", "users"
   add_foreign_key "tickets", "events"
 end
