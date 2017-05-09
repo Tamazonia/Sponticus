@@ -14,12 +14,7 @@
   font-weight: bold;
   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
 }
-.banner p {
-  font-size: 20px;
-  font-weight: lighter;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 20px;
-}
+
 
 .banner-content {
   background-color: rgba(237,145,145,0.71);
@@ -31,4 +26,20 @@
   color: grey;
   margin-bottom: 5px;
   width: 40vh;
+}
+
+.ul-small {
+  padding-left: 18px;
+  font-size: 12px;
+}
+
+.p-small-dark {
+  font-size: 12px;
+  color: #011936;
+  margin-top: 12px;
+
+}
+
+.col-margin-top{
+  margin-top: 5px;
 }

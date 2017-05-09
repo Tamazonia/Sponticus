@@ -1,11 +1,11 @@
 class EventsController < ApplicationController
-
-  skip_before_action :authenticate_user!, only: [:show, :index]
+  skip_before_action :authenticate_user!
   def index
   end
 
   def show
-    @event = Event.find(params[:id])
+      @event = Event.find(params[:id])
+
   end
 
   def new

@@ -1,2 +1,48 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(242,242,242,0.3) 0%, rgba(242,242,242,0.3) 50%), url('https://static.pexels.com/photos/109669/pexels-photo-109669.jpeg');">
+  <div class="banner-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 col-margin-top">
+          <h5 style="text-align: left"> <strong>Price CHF <%= @event.tickets.first.ticket_price%> </strong> </h5>
+          <h5 style="text-align: left">X Tickets left</h5>
+
+
+          <form action="" class="seach-form search" style="text-align: left;">
+
+              <select name="category" id="search_category" class="search-input-small" type="text" style="height:38px">
+
+                <option value="">1 Ticket</option>
+                <option value="">2 Tickets</option>
+                <option value="">3 Tickets</option>
+                <option value="">4 Tickets</option>
+              </select>
+              <br>
+              <br>
+              <a class="btn btn-primary">BUY SPONTI</a>
+         </form>
+        </div>
+
+        <div class="col-xs-12 col-sm-5 col-margin-top" style="text-align: left;">
+          <p class="p-small-dark"><strong> Fine-print about your sponti evening</strong></p>
+          <ul class="ul-small">
+            <li>You can get your ticket with the confirmation email at the Entrance</li>
+            <li>You can choose any available seat upon arrival (first come first serve)</li>
+            <li>It cannot be guaranteed that you can sit next to each other</li>
+
+          </ul>
+
+
+        </div>
+
+        <div class="col-xs-12 col-sm-4 col-margin-top" style="text-align: left;">
+          <p class="p-small-dark"> <strong> About <%= @event.event_name%></strong></p>
+           <p class="p-small-dark"> <%= @event.event_description%></p>
+
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
