@@ -19,14 +19,15 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.organizer = current_user.organizer
+    @event.save
 
 
     #Im putting ticket because I want the user to be able to add a new Event AND a new ticket at the same time (if hew wants to)
-    @ticket = Ticket.new(ticket_params)
-    @ticket.amount_tickets_spare = @ticket.amount_tickets_to_sell
-    @ticket.tickets_sold = 0
-    @ticket.event = @event
-    @ticket.save
+      # @ticket = Ticket.new(ticket_params)
+      # @ticket.amount_tickets_spare = @ticket.amount_tickets_to_sell
+      # @ticket.tickets_sold = 0
+      # @ticket.event = @event
+      # @ticket.save
 
   end
 
@@ -47,9 +48,8 @@ class EventsController < ApplicationController
   end
 
   # Is this needed here?
-  def ticket_params
-    params.require(:ticket).permit(:amount_tickets_to_sell, :ticket_price, :ticket_details, :event_id)
-    # amount_tickets_spare and amount_tickets_sold nicht drauf, da kein Usr Input sein soll
+  # def ticket_params
+  #   params.require(:ticket).permit(:amount_tickets_to_sell, :ticket_price, :ticket_details, :event_id)
 
-  end
+  # end
 end
