@@ -42,7 +42,7 @@
           <h2><%=event.event_name%></h2>
           <p><%=event.organizer.organizer_name%></p>
         </div>
-        <a class="card-link" href="#" ></a>
+        <%=link_to "", event_path(event), class:"card-link" %>
       </div>
     </div>
   <% end %>
