@@ -22,6 +22,7 @@ class EventsController < ApplicationController
     @event.save
 
 
+
     #Im putting ticket because I want the user to be able to add a new Event AND a new ticket at the same time (if hew wants to)
       # @ticket = Ticket.new(ticket_params)
       # @ticket.amount_tickets_spare = @ticket.amount_tickets_to_sell
