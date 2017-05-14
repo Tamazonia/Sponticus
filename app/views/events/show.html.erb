@@ -9,7 +9,7 @@
 
 
         <div class="col-xs-12 col-sm-3 col-margin-top">
-          <h5 style="text-align: left"> <strong> <%= @event.tickets.empty? ? "No Tickets for sale yet" : "Price CHF #{@event.tickets.first.ticket_price}"  %> </strong> </h5>
+          <h5 style="text-align: left"> <strong> <%= @event.tickets.empty? ? "No Tickets for sale yet" : "Price CHF #{@event.tickets.last.ticket_price}"  %> </strong> </h5>
           <h5 style="text-align: left"> <%= @event.tickets.empty? ? "" : " #{@event.tickets.last.amount_tickets_to_sell - @event.tickets.last.amount_tickets_sold } Tickets left"  %> </h5>
 
 
