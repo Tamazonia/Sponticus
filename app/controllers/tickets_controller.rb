@@ -7,29 +7,42 @@ class TicketsController < ApplicationController
 
   def new
     # do i really need that or can I do this on events similar as we did Review for the Doctor?
+    @event= Event.find(params[:event_id])
     @ticket = Ticket.new
+
+    # why organizer? for me more logical event
+    # @ticket = @event.build_organizer
+
+
   end
 
   def create
     # do i really need that or can I do this on events similar as we did Review for the Doctor?
-    def create
+    @event= Event.find(params[:event_id])
     @ticket = Ticket.new(ticket_params)
     @ticket.amount_tickets_spare = @ticket.amount_tickets_to_sell
-    @ticket.tickets_sold = 0
-    @event = Event.find(params[:event_id])
+    @ticket.amount_tickets_sold = 0
     @ticket.event = @event
     @ticket.save
 
 
-    redirect_to event_path(@event)
+    redirect_to user_path(current_user)
   end
 
-  end
+
 
   def edit
+    @event= Event.find(params[:event_id])
+    @ticket = @event.tickets.last
   end
 
   def update
+    @event= Event.find(params[:event_id])
+    @ticket = @event.tickets.last
+    @ticket.update(ticket_params)
+
+
+    redirect_to event_path(@event)
   end
 
   def destroy

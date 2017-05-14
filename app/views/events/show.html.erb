@@ -1,10 +1,16 @@
+
+
+
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(242,242,242,0.3) 0%, rgba(242,242,242,0.3) 50%), url('https://static.pexels.com/photos/109669/pexels-photo-109669.jpeg');">
   <div class="banner-content">
     <div class="container">
       <div class="row">
+        <h3 style="text-align: left" ><%= @event.event_name %> </h3>
+
+
         <div class="col-xs-12 col-sm-3 col-margin-top">
-          <h5 style="text-align: left"> <strong>Price CHF <%= @event.tickets.first.ticket_price%> </strong> </h5>
-          <h5 style="text-align: left">X Tickets left</h5>
+          <h5 style="text-align: left"> <strong> <%= @event.tickets.empty? ? "No Tickets for sale yet" : "Price CHF #{@event.tickets.first.ticket_price}"  %> </strong> </h5>
+          <h5 style="text-align: left"> <%= @event.tickets.empty? ? "" : " #{@event.tickets.last.amount_tickets_to_sell - @event.tickets.last.amount_tickets_sold } Tickets left"  %> </h5>
 
 
           <form action="" class="seach-form search" style="text-align: left;">
@@ -18,7 +24,17 @@
               </select>
               <br>
               <br>
-              <a class="btn btn-primary">BUY SPONTI</a>
+              <% if @event.organizer.user == current_user %>
+                <%= link_to "Edit Event", edit_event_path(@event)%>
+                <br>
+                <% if @event.tickets.empty?%>
+                  <%=link_to "Add Ticket", new_event_ticket_path(@event) %>
+                <% else %>
+                  <%=link_to "Edit Ticket", edit_event_ticket_path(@event) %>
+                <% end %>
+              <% else %>
+                <a class="btn btn-primary">BUY SPONTI</a>
+              <% end %>
          </form>
         </div>
 
@@ -38,11 +54,11 @@
           <p class="p-small-dark"> <strong> About <%= @event.event_name%></strong></p>
            <p class="p-small-dark"> <%= @event.event_description%></p>
 
-        </div>
-
+      </div>
 
 
       </div>
     </div>
   </div>
 </div>
+

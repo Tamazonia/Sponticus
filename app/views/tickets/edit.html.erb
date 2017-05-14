@@ -1,2 +1,23 @@
-<h1>Tickets#edit</h1>
-<p>Find me in app/views/tickets/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1>Edit Ticket </h1>
+
+
+          <%= simple_form_for [@event, @ticket] do |f| %>
+            <%= f.input :amount_tickets_to_sell, prompt: "How many tickets would you like to sell?" %>
+            <%= f.input :ticket_price,  label: "Choose your price (CHF)" %>
+            <%= f.submit "Edit Sponti Ticket", class: "btn btn-primary" %>
+            <% if @ticket.errors.any? %>
+              <!-- <div id="error_explanation"> -->
+                <ul>
+                <% @ticket.errors.full_messages.each do |message| %>
+                <% end %>
+               </ul>
+              </div>
+            <% end %>
+          <% end %>
+        <br>
+    </div>
+  </div>
+</div>
