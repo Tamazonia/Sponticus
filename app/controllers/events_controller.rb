@@ -22,9 +22,9 @@ class EventsController < ApplicationController
     @event.save
 
     if @event.initial_added_tickets == true
-      @ticket = Ticket.new
-      @ticket.event = @event
-      @ticket.save
+      # @ticket = Ticket.new
+      # @ticket.event = @event
+      # @ticket.save
       redirect_to new_event_ticket_path(@event)
     else
       redirect_to user_path(current_user)
