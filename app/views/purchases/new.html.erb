@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1>Purchase your tickets for: </h1>
+      <h2><%= @event.event_name%></h2>
+      <p> Price per Ticket CHF <%=@event.tickets.last.ticket_price %></p>
+      <p>at <%=@event.organizer.organizer_name%></p>
+      <br>
+
+
+          <%= simple_form_for [@event, @ticket, @purchase ] do |f| %>
+            <%= f.input :amount_tickets_purchased, placeholder: "How many tickets would you like to buy?" %>
+
+            <%= f.submit "Buy Sponti Ticket", class: "btn btn-primary" %>
+            <% if @ticket.errors.any? %>
+              <!-- <div id="error_explanation"> -->
+                <ul>
+                <% @ticket.errors.full_messages.each do |message| %>
+                <% end %>
+               </ul>
+              </div>
+            <% end %>
+          <% end %>
+
+
+        <br>
+    </div>
+  </div>
+</div>

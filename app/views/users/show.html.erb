@@ -27,7 +27,8 @@
               <td><%= event.date%> </td>
               <td><%= event.tickets.empty? ? "No" : "Yes" %> </td>
               <td><%= event.tickets.last ? event.tickets.last.ticket_price : "-" %> </td>
-              <td><%= event.tickets.last ? event.tickets.last.amount_tickets_to_sell : "-" %> </td>
+              <td><%= event.tickets.last ? event.tickets.last.amount_tickets_to_sell : "-" %>
+              <td><%= event.tickets.last ? event.tickets.last.amount_tickets_sold : "-" %></td>
               <td></td>
               <td>
                 <%# if event.tickets.empty?%>
@@ -46,6 +47,11 @@
 
 
 <% else %>
-  <p>You are not an organizer</p>
+  <p>Tickets you bought</p>
+  <%@purchases.each do |purchase|%>
+  <p> <%=purchase.amount_tickets_purchased%> x <%=purchase.ticket.event.event_name%></p>
+  <br>
+  <%end%>
+
 <% end %>
 
