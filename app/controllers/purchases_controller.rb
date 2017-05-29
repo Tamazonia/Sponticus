@@ -12,9 +12,11 @@ class PurchasesController < ApplicationController
     @purchase.user = current_user
     @purchase.ticket = @ticket
     @purchase.save
-    @ticket.amount_tickets_sold += @purchase.amount_tickets_purchased
-    @ticket.amount_tickets_spare = @ticket.amount_tickets_to_sell - @purchase.amount_tickets_purchased
-    @ticket.save
+    if @purchase.save
+      @ticket.amount_tickets_sold += @purchase.amount_tickets_purchased
+      @ticket.amount_tickets_spare = @ticket.amount_tickets_to_sell - @ticket.amount_tickets_sold
+      @ticket.save
+    end
 
     redirect_to user_path(current_user)
   end

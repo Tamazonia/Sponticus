@@ -24,7 +24,7 @@
           <% @events.each do |event| %>
             <tr>
               <td><%= link_to event.event_name, event_path(event) %> </td>
-              <td><%= event.date%> </td>
+              <td><%= event.date.strftime("%d.%m.%Y")%> </td>
               <td><%= event.tickets.empty? ? "No" : "Yes" %> </td>
               <td><%= event.tickets.last ? event.tickets.last.ticket_price : "-" %> </td>
               <td><%= event.tickets.last ? event.tickets.last.amount_tickets_to_sell : "-" %>
