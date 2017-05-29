@@ -15,13 +15,13 @@
 
           <form action="" class="seach-form search" style="text-align: left;">
 
-              <select name="category" id="search_category" class="search-input-small" type="text" style="height:38px">
+              <!-- <select name="category" id="search_category" class="search-input-small" type="text" style="height:38px">
 
                 <option value="">1 Ticket</option>
                 <option value="">2 Tickets</option>
                 <option value="">3 Tickets</option>
                 <option value="">4 Tickets</option>
-              </select>
+              </select> -->
               <br>
               <br>
               <% if @event.organizer.user == current_user %>
@@ -33,7 +33,13 @@
                   <%=link_to "Edit Ticket", edit_event_ticket_path(@event) %>
                 <% end %>
               <% else %>
-                <%= link_to "BUY SPONTI", new_event_ticket_purchase_path(@event, @ticket), class: "btn btn-primary"%>
+                  <%if @event.tickets.last.amount_tickets_spare > 0 %>
+                    <%= link_to "BUY SPONTI", new_event_ticket_purchase_path(@event, @ticket), class: "btn btn-primary"%>
+                  <%else%>
+                    <p> NO Sponti Tickets left </p>
+                  <%end%>
+
+
               <% end %>
          </form>
         </div>

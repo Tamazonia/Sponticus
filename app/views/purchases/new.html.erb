@@ -1,15 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1>Purchase your tickets for: </h1>
+      <h1>Purchase your sponti tickets for: </h1>
       <h2><%= @event.event_name%></h2>
       <p> Price per Ticket CHF <%=@event.tickets.last.ticket_price %></p>
       <p>at <%=@event.organizer.organizer_name%></p>
+      <p><%=@event.tickets.last.amount_tickets_spare%> Tickets left</p>
       <br>
 
 
           <%= simple_form_for [@event, @ticket, @purchase ] do |f| %>
-            <%= f.input :amount_tickets_purchased, placeholder: "How many tickets would you like to buy?" %>
+            <%= f.input :amount_tickets_purchased, prompt: "Amount of tickets", label:"How many tickets would you like to buy?", collection: 1..@event.tickets.last.amount_tickets_spare %>
 
             <%= f.submit "Buy Sponti Ticket", class: "btn btn-primary" %>
             <% if @ticket.errors.any? %>
@@ -21,6 +22,15 @@
               </div>
             <% end %>
           <% end %>
+
+      <br>
+      <br>
+      <p class="p-small-dark"><strong> Fine-print about your sponti evening</strong></p>
+          <ul class="ul-small">
+            <li>You can get your ticket with the confirmation email at the Entrance</li>
+            <li>You can choose any available seat upon arrival (first come first serve)</li>
+            <li>It cannot be guaranteed that you can sit next to each other</li>
+          </ul>
 
 
         <br>
