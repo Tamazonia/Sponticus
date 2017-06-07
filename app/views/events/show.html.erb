@@ -58,7 +58,8 @@
 
         <div class="col-xs-12 col-sm-4 col-margin-top" style="text-align: left;">
           <p class="p-small-dark"> <strong> About <%= @event.event_name%></strong></p>
-           <p class="p-small-dark"> <%= @event.event_description%></p>
+          <p class="p-small-dark"> <%= @event.date.strftime("%d.%m.%Y")%>,  <%= @event.event_time.strftime("%H:%M")%></p>
+          <p class="p-small-dark"> <%= @event.event_description%></p>
 
       </div>
 

@@ -12,6 +12,7 @@
             <%= f.input :event_address_postalcode, placeholder: "8006", label: "Postal Code"  %>
             <%= f.input :event_address_city, placeholder: "Zürich", label: "City" %>
             <%= f.input :date %>
+            <%= f.input :event_time %>
             <%= f.input :initial_added_tickets, as: :radio_buttons, label: "Would you like to add Sponti Tickets to this Event?"%>
             <%= f.submit "Add Sponti Event", class: "btn btn-primary" %>
           <% end %>
