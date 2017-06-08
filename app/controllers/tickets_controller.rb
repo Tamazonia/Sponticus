@@ -26,7 +26,11 @@ class TicketsController < ApplicationController
     @ticket.save
 
 
-    redirect_to user_path(current_user)
+    if @ticket.save
+      redirect_to user_path(current_user)
+    else
+      redirect_to new_event_ticket_path(@event)
+    end
   end
 
 
@@ -40,9 +44,11 @@ class TicketsController < ApplicationController
     @event= Event.find(params[:event_id])
     @ticket = @event.tickets.last
     @ticket.update(ticket_params)
-
-
-    redirect_to event_path(@event)
+    if @ticket.save
+      redirect_to user_path(current_user)
+    else
+      redirect_to edit_event_ticket_path(@event)
+    end
   end
 
   def destroy
