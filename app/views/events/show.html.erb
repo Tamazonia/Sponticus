@@ -44,25 +44,25 @@
          </form>
         </div>
 
+
+        <div class="col-xs-12 col-sm-4 col-margin-top" style="text-align: left;">
+          <p class="p-small-dark"> <strong> About <%= @event.event_name%></strong></p>
+          <p class="p-small-dark"> <%= @event.event_description%></p>
+          <br>
+          <p class="p-small-dark"> <strong> Where and When </strong></p>
+          <p class="p-small-dark"> <%= @event.date.strftime("%d.%m.%Y")%>,  <%= @event.event_time.strftime("%H:%M")%></p>
+          <p class="p-small-dark"> <%= @event.event_address_title%>, <%= @event.event_address_street%>, <%= @event.event_address_city%></p>
+
+      </div>
+
         <div class="col-xs-12 col-sm-5 col-margin-top" style="text-align: left;">
           <p class="p-small-dark"><strong> Fine-print about your sponti evening</strong></p>
           <ul class="ul-small">
             <li>You can get your ticket with the confirmation email at the Entrance</li>
             <li>You can choose any available seat upon arrival (first come first serve)</li>
             <li>It cannot be guaranteed that you can sit next to each other</li>
-
           </ul>
-
-
         </div>
-
-        <div class="col-xs-12 col-sm-4 col-margin-top" style="text-align: left;">
-          <p class="p-small-dark"> <strong> About <%= @event.event_name%></strong></p>
-          <p class="p-small-dark"> <%= @event.date.strftime("%d.%m.%Y")%>,  <%= @event.event_time.strftime("%H:%M")%></p>
-          <p class="p-small-dark"> <%= @event.event_description%></p>
-
-      </div>
-
 
       </div>
     </div>
