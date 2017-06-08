@@ -1,4 +1,3 @@
-
 <% if current_user.organizer %>
   <p>You are an organizer</p>
 
@@ -8,19 +7,19 @@
   <% else %>
     <% @events = @organizer.events %>
       <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Tickets selling?</th>
-              <th>Price CHF</th>
-              <th>To sell</th>
-              <th>Sold</th>
-              <th></th>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Tickets selling?</th>
+            <th>Price CHF</th>
+            <th>To sell</th>
+            <th>Sold</th>
+            <th></th>
 
-            </tr>
-          </thead>
-          <tbody>
+          </tr>
+        </thead>
+        <tbody>
           <% @events.each do |event| %>
             <tr>
               <td><%= link_to event.event_name, event_path(event) %> </td>
@@ -31,18 +30,12 @@
               <td><%= event.tickets.last ? event.tickets.last.amount_tickets_sold : "-" %></td>
               <td></td>
               <td>
-                <%# if event.tickets.empty?%>
-                  <%#=link_to "Add Sponti ticket", new_event_ticket_path(event), class: "btn btn-primary btn-sm" %>
-                <%# else %>
-                  <%#=link_to "Edit Sponti ticket", edit_event_ticket_path(event), class: "btn btn-primary btn-sm" %>
-                <%# end %>
               </td>
             </tr>
           <%end%>
-          </tbody>
+        </tbody>
+      </table>
   <% end %>
-
-
 
 
 
@@ -54,4 +47,3 @@
   <%end%>
 
 <% end %>
-

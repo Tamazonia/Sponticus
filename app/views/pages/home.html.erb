@@ -22,7 +22,7 @@
         </select>
       <!-- </div> -->
       <!-- <div class="col-xs-12 col-sm-4"> -->
-        <a class="btn btn-primary">GET SPONTI</a>
+        <%= link_to "Get Sponti!", events_path, class:"btn btn-primary"%>
       <!-- </div> -->
    </form>
   </div>
@@ -32,24 +32,20 @@
 
 <div class="container">
   <div class="row">
-  <h4> Todays Tickets with a special Sponti Price</h4>
-  <% events = Event.all %>
-  <% events = events.select {|event| event.tickets.count > 0} %>
-  <% events.each do |event| %>
-    <div class="col-xs-12 col-sm-4">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=event.photo%>);">
-        <div class="card-category"> CHF <%= event.tickets.last.ticket_price %> </div>
-        <div class="card-description">
-          <h2><%=event.event_name%></h2>
-          <p><%=event.organizer.organizer_name%></p>
+    <h4> Todays Events with a special Sponti Tickets</h4>
+    <% events = Event.all %>
+    <% events = events.select {|event| event.tickets.count > 0} %>
+    <% events.each do |event| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=event.photo%>);">
+          <div class="card-category"> CHF <%= event.tickets.last.ticket_price %> </div>
+          <div class="card-description">
+            <h2><%=event.event_name%></h2>
+            <p><%=event.organizer.organizer_name%></p>
+          </div>
+          <%=link_to "", event_path(event), class:"card-link" %>
         </div>
-        <%=link_to "", event_path(event), class:"card-link" %>
       </div>
-    </div>
-  <% end %>
-
-
-
-
+    <% end %>
   </div>
 </div>
