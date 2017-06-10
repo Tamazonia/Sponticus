@@ -1,4 +1,5 @@
 class OrganizersController < ApplicationController
+
   def index
   end
 
@@ -21,9 +22,17 @@ class OrganizersController < ApplicationController
   end
 
   def edit
+    @organizer = Organizer.find(params[:id])
   end
 
   def update
+    @organizer = Organizer.find(params[:id])
+    @organizer.update(organizer_params)
+    if @organizer.save
+      redirect_to user_path(current_user)
+    else
+      redirect_to edit_organizer_path
+    end
   end
 
   def destroy
