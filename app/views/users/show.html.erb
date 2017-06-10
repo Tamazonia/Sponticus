@@ -5,7 +5,9 @@
     <p><%= @organizer.organizer_address_street%></p>
     <p><%= @organizer.organizer_address_postalcode%></p>
     <p><%= @organizer.organizer_address_city%></p>
-    <%= link_to "Edit Address", edit_organizer_path(@organizer), class: "btn-btn primary"%>
+    <%= link_to "Edit Address", edit_organizer_path(@organizer)%>
+    <br>
+    <%= link_to "Edit Email and Password", edit_user_registration_path(current_user)%>
   <br>
   <br>
 
@@ -48,6 +50,11 @@
 
 
   <% else %>
+    <p><%= @user.email %></p>
+    <%= link_to "Edit Email and Password", edit_user_registration_path(current_user)%>
+    <br>
+    <br>
+
     <p>Tickets you bought</p>
     <%@purchases.each do |purchase|%>
     <p> <%=purchase.amount_tickets_purchased%> x <%=purchase.ticket.event.event_name%></p>
