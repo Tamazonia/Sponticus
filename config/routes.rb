@@ -6,12 +6,12 @@ Rails.application.routes.draw do
 
   get 'purchases/create'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :events
   resources :users, only: [:show]
-
+  resources :organizers
 
   resources :events do
     resources :tickets do
