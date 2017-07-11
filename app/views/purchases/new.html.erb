@@ -8,20 +8,23 @@
       <p><%=@event.tickets.last.amount_tickets_spare%> Tickets left</p>
       <br>
 
+      <%if current_user.organizer %>
+        <p> As an Organizer you cannot buy tickets. If you want to buy tickets, create a "normal" account </p>
+      <%else%>
+        <%= simple_form_for [@event, @ticket, @purchase ] do |f| %>
+          <%= f.input :amount_tickets_purchased, prompt: "Amount of tickets", label:"How many tickets would you like to buy?", collection: 1..@event.tickets.last.amount_tickets_spare %>
 
-          <%= simple_form_for [@event, @ticket, @purchase ] do |f| %>
-            <%= f.input :amount_tickets_purchased, prompt: "Amount of tickets", label:"How many tickets would you like to buy?", collection: 1..@event.tickets.last.amount_tickets_spare %>
-
-            <%= f.submit "Buy Sponti Ticket", class: "btn btn-primary" %>
-            <% if @ticket.errors.any? %>
-              <!-- <div id="error_explanation"> -->
-                <ul>
-                <% @ticket.errors.full_messages.each do |message| %>
-                <% end %>
-               </ul>
-              </div>
-            <% end %>
+          <%= f.submit "Buy Sponti Ticket", class: "btn btn-primary" %>
+          <% if @ticket.errors.any? %>
+            <!-- <div id="error_explanation"> -->
+              <ul>
+              <% @ticket.errors.full_messages.each do |message| %>
+              <% end %>
+             </ul>
+            </div>
           <% end %>
+        <% end %>
+      <% end %>
 
       <br>
       <br>
@@ -31,8 +34,6 @@
             <li>You can choose any available seat upon arrival (first come first serve)</li>
             <li>It cannot be guaranteed that you can sit next to each other</li>
           </ul>
-
-
         <br>
     </div>
   </div>
