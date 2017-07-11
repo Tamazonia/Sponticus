@@ -26,9 +26,12 @@
                   <%=link_to "Edit Ticket", edit_event_ticket_path(@event) %>
                 <% end %>
               <% else %>
-                  <%if @event.tickets.last.amount_tickets_spare > 0 %>
+                  <% if current_user && current_user.organizer %>
+                    <p> As an Organizer you cannot buy tickets. If you want to buy tickets, create a "normal" account</p>
+                  <%elsif @event.tickets.last.amount_tickets_spare > 0 %>
                     <%= link_to "BUY SPONTI", new_event_ticket_purchase_path(@event, @ticket), class: "btn btn-primary"%>
-                  <%else%>
+
+                  <% else %>
                     <p> NO Sponti Tickets left </p>
                   <%end%>
 
