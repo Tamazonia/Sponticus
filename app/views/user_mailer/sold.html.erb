@@ -1,0 +1,22 @@
+<style>
+  html {
+    font-family: sans-serif;
+  }
+</style>
+
+
+Dear <%=@seller.organizer_name%>,
+
+
+<br>
+<br>
+You have just sold <strong> <%= @purchase.amount_tickets_purchased%> </strong> tickets for <%= @purchase.ticket.event.event_name %>.
+The buyer has following email address (for you to double check when handing out the tickets): <%= @purchase.user.email %>.
+<br>
+<%= link_to "See everything you have sold until now", user_url(@seller)%>
+
+<br>
+<br>
+Best regards,
+<br>
+Sponticus Team
