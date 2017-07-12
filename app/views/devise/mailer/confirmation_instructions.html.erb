@@ -1,5 +1,22 @@
-<p>Welcome <%= @email %>!</p>
+<style>
+  html {
+    font-family: sans-serif;
+  }
+</style>
 
-<p>You can confirm your account email through the link below:</p>
+Welcome to sponticus, <%= @email %>!
+<br>
+<br>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+You can confirm your account email through the link below:
+<br>
+
+<%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %>
+<br>
+<br>
+Have fun being sponti!
+<br>
+
+Your Sponticus Team
+
+
