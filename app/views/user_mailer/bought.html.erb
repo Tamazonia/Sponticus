@@ -1,0 +1,41 @@
+<style>
+  html {
+    font-family: sans-serif;
+  }
+</style>
+
+
+<strong>Congratulations </strong>
+<br>
+You have just bought <strong> <%= @purchase.amount_tickets_purchased%> </strong>  sponti tickets for <%= @purchase.ticket.event.event_name %>.
+The event takes place at:
+<br>
+<br>
+<%= @purchase.ticket.event.event_address_title %>
+<br>
+<%= @purchase.ticket.event.event_address_street %>
+<br>
+<%= @purchase.ticket.event.event_address_city %>
+
+<br>
+<%= @purchase.ticket.event.date.strftime("%d.%m.%Y")%>, <%= @purchase.ticket.event.event_time.strftime("%H:%M")%>
+<br>
+<br>
+Please make sure you are there 30 minutes before the event.
+<br>
+Remember the small print of your purchase:
+<br>
+- You can get your ticket with this confirmation email at the Entrance
+<br>
+- You can choose any available seat upon arrival (first come first serve)
+<br>
+- It cannot be guaranteed that you can sit next to each other
+<br>
+<br>
+<%= link_to "See everything you have bought until now", user_url(@buyer)%>
+
+<br>
+<br>
+Enjoy your sponti event!
+<br>
+Your  Sponticus Team

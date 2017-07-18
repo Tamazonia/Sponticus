@@ -8,8 +8,14 @@ class UserMailer < ApplicationMailer
   def sold(seller, purchase)
     @seller = seller
     @purchase = purchase
-
-
-    mail(to: seller.user.email, subject: 'You sold Sponti Tickets')
+    mail(to: seller.user.email, subject: 'You just sold Sponti Tickets')
   end
+
+  def bought(buyer, purchase)
+    @buyer = buyer
+    @purchase = purchase
+    mail(to: buyer.email, subject: 'You just bought Sponti Tickets')
+  end
+
+
 end
