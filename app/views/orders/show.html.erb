@@ -14,7 +14,6 @@
     <br>
     The event takes place at:
     <br>
-    <br>
      <%= @order.ticket.event.event_address_title %>
     <br>
     <%= @order.ticket.event.event_address_street %>
@@ -27,16 +26,15 @@
     <br>
     Please make sure you are there 30 minutes before the event.
     <br>
+    <br>
     Remember the small print of your order:
     <br>
-    - You can get your ticket with this confirmation email at the Entrance
-    <br>
-    - You can choose any available seat upon arrival (first come first serve)
-    <br>
-    - It cannot be guaranteed that you can sit next to each other
+    <ul>
+      <li>You can get your ticket with this confirmation at the Entrance </li>
+      <li>You can choose any available seat upon arrival (first come first serve) </li>
+      <li>It cannot be guaranteed that you can sit next to each other </li>
+    </ul>
 
-
-    <br>
     <br>
     Enjoy your sponti event!
   </p>
@@ -44,5 +42,11 @@
   <%else%>
     <p>Your payment has not yet occured </p>
   <%end%>
+
+  <br>
+  <br>
+
+  <%= link_to "Send Confirmation by email", :controller => "orders", :action => "send_confirmation_mail", :id => @order.id, class: "btn btn-primary" %>
+
 
 </div>

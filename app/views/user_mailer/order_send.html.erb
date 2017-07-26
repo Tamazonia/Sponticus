@@ -1,0 +1,42 @@
+<style>
+  html {
+    font-family: sans-serif;
+  }
+</style>
+
+<strong>Congratulations </strong>
+<br>
+You have just bought <strong> <%= @order.quantity%> </strong>  sponti tickets for <%= @order.ticket.event.event_name %> for the total price of  <strong>  CHF <%= @order.amount %></strong>.
+
+
+<br>
+The tickets are reserved under your email adress: <strong> <%= @order.user.email %> </strong>
+<br>
+<br>
+The event takes place at:
+<br>
+<br>
+ <%= @order.ticket.event.event_address_title %>
+<br>
+<%= @order.ticket.event.event_address_street %>
+<br>
+<%= @order.ticket.event.event_address_city %>
+
+<br>
+<%= @order.ticket.event.date.strftime("%d.%m.%Y")%>, <%= @order.ticket.event.event_time.strftime("%H:%M")%>
+<br>
+<br>
+Please make sure you are there 30 minutes before the event.
+<br>
+Remember the small print of your order:
+<br>
+- You can get your ticket with this confirmation email at the Entrance
+<br>
+- You can choose any available seat upon arrival (first come first serve)
+<br>
+- It cannot be guaranteed that you can sit next to each other
+
+
+<br>
+<br>
+Enjoy your sponti event!

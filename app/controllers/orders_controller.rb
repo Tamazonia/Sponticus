@@ -7,27 +7,15 @@ class OrdersController < ApplicationController
     order_quantity = params[:order_quantity]
 
 
-      @order  = Order.create!(  ticket_sku: @ticket.sku,
-                            unit_price_cents: @ticket.price,
-                            quantity: order_quantity.first.to_i,
-                            amount: @ticket.price*order_quantity.first.to_i,
-                            state: 'pending',
-                            ticket: @ticket,
-                            user: current_user)
+    @order  = Order.create!(  ticket_sku: @ticket.sku,
+                          unit_price_cents: @ticket.price,
+                          quantity: order_quantity.first.to_i,
+                          amount: @ticket.price*order_quantity.first.to_i,
+                          state: 'pending',
+                          ticket: @ticket,
+                          user: current_user)
 
-      # if order.save
-        redirect_to new_order_payment_path(@order)
-      # else
-      # end
-
-      # if @order.save
-      #   if @order.state == "paid"
-      #     @ticket.amount_tickets_sold += @order.quantity
-      #     @ticket.amount_tickets_spare = @ticket.amount_tickets_to_sell - @ticket.amount_tickets_sold
-      #     @ticket.save
-      #   end
-      # end
-
+    redirect_to new_order_payment_path(@order)
 
   end
 
@@ -35,11 +23,14 @@ class OrdersController < ApplicationController
     @order = Order.where(state: 'paid').find(params[:id])
   end
 
-  private
+  def send_confirmation_mail
+  @order = Order.find(params[:id])
+  @user = @order.user
 
-  def order_params
-    params.require(:order).permit(:ticket_id)
+  UserMailer.order_send(@order, @user).deliver_now
+  flash[:notice] = "Email Confirmation has been sent."
+  redirect_to order_path(@order)
+  # redirect_to order_path(@order.id)
   end
-
 
 end
