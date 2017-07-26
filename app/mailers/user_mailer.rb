@@ -11,11 +11,17 @@ class UserMailer < ApplicationMailer
     mail(to: seller.user.email, subject: 'You just sold Sponti Tickets')
   end
 
-  def bought(buyer, order)
-    @buyer = buyer
-    @order = order
-    mail(to: buyer.email, subject: 'You just bought Sponti Tickets')
-  end
+  # def bought(buyer, order)
+  #   @buyer = buyer
+  #   @order = order
+  #   mail(to: buyer.email, subject: 'You just bought Sponti Tickets')
+  # end
 
+
+   def order_send(order, user)
+    @order = order
+    @user = user
+    mail(to: "#{@user.email}", subject: "Your sponti confirmation")
+  end
 
 end

@@ -16,4 +16,8 @@ Rails.application.routes.draw do
       resources :purchases, only: [:new, :create]
     end
   end
+
+  get :send_confirmation_mail, to: "orders#send_confirmation_mail", as: :send_confirmation_mail
+
+
 end
