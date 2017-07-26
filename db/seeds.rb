@@ -62,7 +62,7 @@ Event.create!(
   event_category: "Opera/Operette",
   organizer: organizers.sample,
   photo: "https://www.metopera.org/metoperafiles/season/2016-17/operas/la_boh%C3%A8me/1380x591%20PDP%20hero/1380x591_boheme_top.jpg",
-  event_address_title: "Zürcher Opernahuse",
+  event_address_title: "Zürcher Opernhaus",
   event_address_street: "Sechseläutenplatz",
   event_address_postalcode: 8001,
   event_address_city: "Zürich",
@@ -102,8 +102,9 @@ Ticket.create!(
   amount_tickets_to_sell: 30,
   amount_tickets_sold: 0,
   amount_tickets_spare: 30,
-  ticket_price: 50,
-  event: Event.all.sample
+  price: 50,
+  event: Event.all.sample,
+  sku: "eis"
 )
 
 
@@ -111,16 +112,18 @@ Ticket.create!(
   amount_tickets_to_sell: 20,
   amount_tickets_sold: 0,
   amount_tickets_spare: 20,
-  ticket_price: 70,
-  event: Event.all.sample
+  price: 70,
+  event: Event.all.sample,
+  sku: "zwei"
 )
 
 Ticket.create!(
   amount_tickets_to_sell: 10,
   amount_tickets_sold: 0,
   amount_tickets_spare: 10,
-  ticket_price: 15,
-  event: Event.all.sample
+  price: 15,
+  event: Event.all.sample,
+  sku: "drei"
 )
 
 

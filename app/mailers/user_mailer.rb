@@ -5,15 +5,15 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.sold.subject
   #
-  def sold(seller, purchase)
+  def sold(seller, order)
     @seller = seller
-    @purchase = purchase
+    @order = order
     mail(to: seller.user.email, subject: 'You just sold Sponti Tickets')
   end
 
-  def bought(buyer, purchase)
+  def bought(buyer, order)
     @buyer = buyer
-    @purchase = purchase
+    @order = order
     mail(to: buyer.email, subject: 'You just bought Sponti Tickets')
   end
 

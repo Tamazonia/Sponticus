@@ -8,7 +8,7 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     @ticket = Ticket.find(params[:ticket_id])
-    @purchase.total_price = @purchase.amount_tickets_purchased * @ticket.ticket_price
+    @purchase.total_price = @purchase.amount_tickets_purchased * @ticket.price
     @purchase.user = current_user
     @purchase.ticket = @ticket
     @purchase.save
