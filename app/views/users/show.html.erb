@@ -11,7 +11,6 @@
   <br>
   <br>
 
-
     <% if @organizer.nil?  %>
       <p>You do not have any Events</p>
     <% else %>
@@ -56,10 +55,37 @@
     <br>
 
     <p>Tickets you bought</p>
-    <%@purchases.each do |purchase|%>
-    <p> <%=purchase.amount_tickets_purchased%> x <%=purchase.ticket.event.event_name%></p>
-    <br>
-    <%end%>
+
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Event Date</th>
+              <th>Quantity</th>
+              <th>Price CHF</th>
+              <th>Total Price CHF</th>
+              <th>State</th>
+              <th></th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <%@orders.each do |order|%>
+              <tr>
+                <td><%= link_to order.ticket.event.event_name, event_path(order.ticket.event) %> </td>
+                <td><%= order.ticket.event.date.strftime("%d.%m.%Y")%> </td>
+                <td><%= order.quantity%> </td>
+                <td><%= order.unit_price_cents %>
+                <td><%= order.amount %> </td>
+                <td><%= order.state %></td>
+                <td></td>
+                <td>
+                </td>
+              </tr>
+            <%end%>
+          </tbody>
+        </table>
 
   <% end %>
 </div>
