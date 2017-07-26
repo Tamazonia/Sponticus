@@ -38,11 +38,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.update(event_params)
     if @event.save
-      if @event.initial_added_tickets == true
-        redirect_to new_event_ticket_path(@event)
-      else
         redirect_to user_path(current_user)
-      end
     else
       redirect_to edit_event_path(@event)
     end
