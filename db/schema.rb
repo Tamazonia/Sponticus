@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712204256) do
+ActiveRecord::Schema.define(version: 20170726183259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,21 @@ ActiveRecord::Schema.define(version: 20170712204256) do
     t.boolean  "initial_added_tickets"
     t.time     "event_time"
     t.index ["organizer_id"], name: "index_events_on_organizer_id", using: :btree
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "state"
+    t.string   "ticket_sku"
+    t.integer  "unit_price_cents", default: 0, null: false
+    t.integer  "quantity"
+    t.integer  "amount_cents",     default: 0, null: false
+    t.json     "payment"
+    t.integer  "ticket_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "user_id"
+    t.index ["ticket_id"], name: "index_orders_on_ticket_id", using: :btree
+    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
   create_table "organizers", force: :cascade do |t|
@@ -58,13 +73,14 @@ ActiveRecord::Schema.define(version: 20170712204256) do
 
   create_table "tickets", force: :cascade do |t|
     t.integer  "amount_tickets_to_sell"
-    t.integer  "ticket_price"
     t.text     "ticket_details"
     t.integer  "event_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "amount_tickets_sold"
     t.integer  "amount_tickets_spare"
+    t.string   "sku"
+    t.integer  "price_cents",            default: 0, null: false
     t.index ["event_id"], name: "index_tickets_on_event_id", using: :btree
   end
 
@@ -90,6 +106,8 @@ ActiveRecord::Schema.define(version: 20170712204256) do
   end
 
   add_foreign_key "events", "organizers"
+  add_foreign_key "orders", "tickets"
+  add_foreign_key "orders", "users"
   add_foreign_key "organizers", "users"
   add_foreign_key "purchases", "tickets"
   add_foreign_key "purchases", "users"

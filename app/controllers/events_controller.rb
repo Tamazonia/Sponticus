@@ -7,14 +7,12 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @ticket = @event.tickets.last
-
-
+    @order = Order.new(ticket: @ticket)
+    # @order.unit_price = @ticket.price
   end
 
   def new
     @event = Event.new
-
-
   end
 
   def create

@@ -24,7 +24,7 @@
     <% events.each do |event| %>
       <div class="col-xs-12 col-sm-4">
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=event.photo%>);">
-          <div class="card-category"> CHF <%= event.tickets.last.ticket_price %> </div>
+          <div class="card-category"> <%= humanized_money_with_symbol(event.tickets.last.price) %> </div>
           <div class="card-description">
             <h2><%=event.event_name%></h2>
             <p><%=event.organizer.organizer_name%></p>

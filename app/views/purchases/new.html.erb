@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h1>Purchase your sponti tickets for: </h1>
       <h2><%= @event.event_name%></h2>
-      <p> Price per Ticket CHF <%=@event.tickets.last.ticket_price %></p>
+      <p> Price per Ticket CHF <%=@event.tickets.last.price %></p>
       <p>at <%=@event.organizer.organizer_name%></p>
       <p><%=@event.tickets.last.amount_tickets_spare%> Tickets left</p>
       <br>

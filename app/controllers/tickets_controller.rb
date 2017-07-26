@@ -57,7 +57,7 @@ class TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.require(:ticket).permit(:amount_tickets_to_sell, :ticket_price, :ticket_details, :event_id)
+    params.require(:ticket).permit(:amount_tickets_to_sell, :price, :ticket_details, :event_id)
     # amount_tickets_spare and amount_tickets_sold nicht drauf, da kein Usr Input sein soll
 
   end
