@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     #@user = User.find(params[:id])
     @user = current_user
     @organizer = @user.organizer
-    @purchases = @user.purchases
+    @orders = @user.orders
 
 
   end
