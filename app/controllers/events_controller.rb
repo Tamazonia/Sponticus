@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!, only: [:new]
   def index
     @events = Event.all
+
   end
 
   def show

@@ -1,22 +1,30 @@
 <div class="container fullscreen">
-  <h1>Sponti Tickets of Today</h1>
+
+
 
 
 
   <div class="row">
-    <h4> Todays Tickets with a special Sponti Price</h4>
-    <% events = @events.select {|event| event.tickets.count > 0 && event.date.today?} %>
+  <h1>Sponti Tickets of Today</h1>
+    <!-- <h4> Todays Tickets with a special Sponti Price</h4> -->
+    <% #events = @events.select {|event| event.tickets.count > 0 && event.date.today?} %>
 
-    <%if events.empty?%>
+
+    <%if @events.empty?%>
       <p>There are no Events today with sponti Tickets. Check out Events without sponti Tickets </p>
     <% else %>
-      <% events.each do |event| %>
+      <% @events.each do |event| %>
         <div class="col-xs-12 col-sm-4">
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=event.photo%>);">
-            <div class="card-category"> CHF <%= event.tickets.last.price %>
+            <div class="card-category">
+              <% if event.tickets.empty?%>
+                No Tix for sale
+              <% else %>
+                CHF <%= event.tickets.last.price %>
+              <% end %>
             </div>
             <div class="card-description">
-              <h2><%=event.event_name%></h2>
+              <h2 class="white"><%=event.event_name%></h2>
               <!-- <p><%=event.organizer.organizer_name%></p> -->
             </div>
             <%=link_to "", event_path(event), class:"card-link" %>
@@ -27,7 +35,7 @@
 
               <div class="calendar-box">
                 <div class="calendar-month">
-                  <p class="no-margin"><%=event.date.strftime("%B").first(3)%></p>
+                  <p class="no-margin white"><%=event.date.strftime("%B").first(3)%></p>
                 </div>
                 <div class="calendar-day">
                   <p class="no-margin"><%=event.date.day%></p>
@@ -36,7 +44,7 @@
 
 
               <div class="event-local-box">
-                <div class="upercase line">
+                <div class="upercase ">
                 <p class="bold"><%= event.organizer.organizer_name%></p>
                 </div>
                 <div class="">
@@ -55,30 +63,5 @@
     <% end %>
   </div>
 
-
-  <h4> Todays Events without a special Sponti Ticket</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Organizer</th>
-            <th>Where</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% events = @events.select {|event| event.date.today? && event.tickets.empty?} %>
-          <% events.each  do |event| %>
-            <tr>
-              <td><%= event.event_name%> </td>
-              <td><%= event.event_category%> </td>
-              <td><%= event.organizer.organizer_name%> </td>
-              <td><%= event.event_address_city%> </td>
-              <td><%= event.event_time.strftime("%H:%M")%> </td>
-            </tr>
-          <%end%>
-        </tbody>
-      </table>
 
 </div>

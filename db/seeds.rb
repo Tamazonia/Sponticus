@@ -67,8 +67,8 @@ Event.create!(
   event_address_postalcode: 8001,
   event_address_city: "Zürich",
   event_description: "This is a french traditionl Opera. Dont miss it",
-  event_time: DateTime.now+1,
-  date: DateTime.now
+  event_time: DateTime.now ,
+  date: DateTime.now + 10.days
 )
 
 Event.create!(
@@ -81,8 +81,8 @@ Event.create!(
   event_address_postalcode: 8001,
   event_address_city: "Zürich",
   event_description: "Very funny play - ha ha ha",
-  event_time: DateTime.now,
-  date: DateTime.now
+  event_time: DateTime.now ,
+  date: DateTime.now + 2.days
 )
 
 Event.create!(
