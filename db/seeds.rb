@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Purchase.destroy_all
+Order.destroy_all
 Ticket.destroy_all
 Event.destroy_all
 Organizer.destroy_all
@@ -67,8 +67,8 @@ Event.create!(
   event_address_postalcode: 8001,
   event_address_city: "Zürich",
   event_description: "This is a french traditionl Opera. Dont miss it",
-  event_time: DateTime.now+1,
-  date: DateTime.now
+  event_time: DateTime.now ,
+  date: DateTime.now + 10.days
 )
 
 Event.create!(
@@ -81,8 +81,8 @@ Event.create!(
   event_address_postalcode: 8001,
   event_address_city: "Zürich",
   event_description: "Very funny play - ha ha ha",
-  event_time: DateTime.now,
-  date: DateTime.now
+  event_time: DateTime.now ,
+  date: DateTime.now + 2.days
 )
 
 Event.create!(

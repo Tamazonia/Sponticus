@@ -1,14 +1,14 @@
 /* Main class */
 .navbar-wagon {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: #95a9c1;
+  background: white;
+  box-shadow: 0 1px 1px 1px lightgrey;
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
   padding: 0px 30px;
   align-items: center;
   justify-content: space-between;
-
 }
 
 /* Optional class to fix the navbar on top */
@@ -41,12 +41,13 @@
 
 /* Navbar standard link */
 .navbar-wagon-link {
-  color: #616668;
+  color: $brand-primary;
   font-size: 14px;
   padding-left: 20px;
 }
 .navbar-wagon-link:hover {
   text-decoration: none;
+  font-weight: bold;
 }
 
 /* Navbar right button */
@@ -115,8 +116,8 @@
   padding: 10px 20px;
 }
 .navbar-wagon-dropdown-menu li > a:hover {
-  background: transparent !important;
-  color: black !important;
+  // background: transparent !important;
+  // color: black !important;
 }
 .navbar-wagon-dropdown-menu:before {
   content: ' ';
@@ -129,4 +130,29 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+
+
+.btn-outline {
+  border: 1px solid;
+  background-color: transparent;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-background-clip: border;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  font-weight: normal;
+  font-size: 14px;
+  padding: 7px;
+  margin-left: 14px;
+}
+
+.btn-outline:hover {
+  background-color: $brand-primary;
+  text-decoration: none;
+  color: white;
 }
