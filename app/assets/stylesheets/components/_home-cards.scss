@@ -4,7 +4,7 @@
   background-size: cover !important;
   color: white;
   position: relative;
-  margin: 5px 0px;
+  margin-top: 5px;
 }
 
 .card-user {
@@ -43,3 +43,107 @@
 .card-link:hover{
   opacity: 0.1;
 }
+
+.detail-box {
+  display: flex;
+}
+
+.calendar-box {
+    background: #ffffff;
+    color: #666666;
+    width: 50px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+    padding: 0;
+    // float: left;
+    flex: 0 0 20%
+}
+
+.calendar-month {
+  display: block;
+    background: #fa565a;
+    font-size: 10px;
+    line-height: 8px;
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0px 0 0 0;
+    text-transform: uppercase;
+    color: #ffffff;
+    border-top: 1px solid #fa565a;
+
+}
+
+.calendar-day {
+  border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: #ddd;
+    border-bottom-left-radius: 3px;
+    font-weight: 300;
+    font-size: 26px;
+    line-height: 31px;
+}
+
+.event-local-box {
+    background: #f8f8f8;
+    color: #666666;
+    font-family: 'Open Sans', sans-serif;
+    color: #50525f;
+    font-size: 10px;
+    font-weight: 400;
+    padding: 5px 5px 5px 10px;
+    border-width: 1px 1px 1px 0;
+    border-style: solid;
+    border-color: #ddd;
+    border-bottom-right-radius: 3px;
+    text-align: left;
+    flex-grow: 1;
+}
+
+
+
+.line {
+      overflow: hidden;
+    max-height: 15px;
+    line-height: 20px;
+    display: inline-block;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
