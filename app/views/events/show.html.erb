@@ -1,4 +1,138 @@
 
+  <div class="wrapper-curtain" style="background-image: url('https://static.pexels.com/photos/109669/pexels-photo-109669.jpeg');">
+    <div class="container ">
+      <div class="row">
+
+        <div class="box">
+
+
+
+        <!-- ********************** -->
+          <div class="box-top">
+            <div class="col-xs-12 col-sm-8 no-padding">
+              <div class="box-pic">
+                <img src="<%= @event.photo%>" alt="<%=@event.event_name%>">
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 no-padding">
+              <div class="box-top-info">
+                <p class="no-margin"><%=@event.date.strftime("%B").first(3)%></p>
+                <p class="hightspace"><%=@event.date.strftime("%02d")%></p>
+                <h2 style="margin-bottom: 0px; color: black;"><%=@event.event_name%></h2>
+                <h5 style="margin: 0px 0px 30px 0px;"><%=@event.organizer.organizer_name%></h5>
+
+
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- ******************** -->
+          <div class="box-buy">
+            <div class="col-xs-12 col-sm-8">
+
+              <div class="share" style="padding-top: 10px;">
+                <% if !@event.tickets.empty?%>
+                  <p style="margin-bottom: 0px;">CHF <%=@event.tickets.last.price%></p>
+                  <p style="margin-top: 0px;"> <%= @event.tickets.empty? ? "" : " #{@event.tickets.last.amount_tickets_to_sell - @event.tickets.last.amount_tickets_sold } Tickets left"  %> </p>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-4">
+              <div class="box-buy-process">
+                <% if @event.tickets.empty?%>
+                  <p>No Tix for sale on Sponticus  </p>
+                <% else %>
+                  <% if @event.tickets.last.amount_tickets_spare > 0 %>
+                    <%= form_tag orders_path do %>
+                      <span><%= number_field("order_quantity", @order.quantity, in: 1..@ticket.amount_tickets_spare, value: 2, style: "text-align: right") %> Tickets</span>
+                      <%= hidden_field_tag 'ticket_id', @ticket.id %>
+                      <%= submit_tag 'Purchase', class: 'btn btn-primary', style: "width: 100%; margin-top: 5px;"%>
+                    <% end %>
+                  <% else %>
+                    <p> No Sponti Tickets left </p>
+                  <%end%>
+                <% end %>
+
+              </div>
+            </div>
+          </div>
+
+
+          <!-- ******************** -->
+          <div class="box-info">
+            <div class="row">
+              <div class="col-xs-12 col-sm-8">
+                <div class="box-description">
+                  <p style="font-weight: bold; padding-top: 5px;">Category</p>
+                  <p><%=@event.event_category%></p>
+
+                  <p style="font-weight: bold; padding-top: 5px;">Description</p>
+                  <p><%=@event.event_description%></p>
+                  <p style="font-weight: bold; padding-top: 5px;">Fine Print</p>
+                    <ul class="ul-small">
+                      <li>You can get your ticket with the confirmation email at the Entrance</li>
+                      <li>You can choose any available seat upon arrival (first come first serve)</li>
+                      <li>It cannot be guaranteed that you can sit next to each other</li>
+                    </ul>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <div class="box-details">
+                  <div class="box-time">
+                    <p style="font-weight: bold; padding-top: 5px;">Date and Time</p>
+                    <p><%=@event.date.strftime("%d %B %Y")%>, <%= @event.event_time.strftime("%H")%>h</p>
+
+                  </div>
+                  <div class="box-location">
+                    <p style="font-weight: bold; padding-top: 5px;">Location</p>
+                    <p class="no-margin"><%= @event.event_address_title%></p>
+                    <p class="no-margin"><%= @event.event_address_street%></p>
+                    <p class="no-margin"><%= @event.event_address_postalcode%> <%= @event.event_address_title%> </p>
+                  </div>
+
+                  <div>
+                    <% if @event.organizer.user == current_user %>
+                      <p style="font-weight: bold; padding-top: 5px;"> This is your event. Do you want to edit it?</p>
+                      <p> <%= link_to "Edit Event", edit_event_path(@event)%> </p>
+
+                      <% if @event.tickets.empty?%>
+                      <p> <%=link_to "Add Ticket", new_event_ticket_path(@event) %> </p>
+                      <% else %>
+                      <span> <%=link_to "Edit Ticket", edit_event_ticket_path(@event) %> </span>
+                      <% end %>
+                    <%end%>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- box -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </div> <!-- wrapper-curtain -->
+
+<!-- <div class="black" style="background-color: black">
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 
 
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(242,242,242,0.3) 0%, rgba(242,242,242,0.3) 50%), url('https://static.pexels.com/photos/109669/pexels-photo-109669.jpeg');">
@@ -58,3 +192,4 @@
   </div>
 </div>
 
+ -->

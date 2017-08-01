@@ -5,7 +5,7 @@
 
 
   <div class="row">
-  <h1>Sponti Tickets of Today</h1>
+  <h2 style="padding-left: 20px">All Events</h2>
     <!-- <h4> Todays Tickets with a special Sponti Price</h4> -->
     <% #events = @events.select {|event| event.tickets.count > 0 && event.date.today?} %>
 
@@ -32,30 +32,29 @@
 
 
           <div class="detail-box">
-
-              <div class="calendar-box">
-                <div class="calendar-month">
-                  <p class="no-margin white"><%=event.date.strftime("%B").first(3)%></p>
-                </div>
-                <div class="calendar-day">
-                  <p class="no-margin"><%=event.date.day%></p>
-                </div>
+            <div class="calendar-box">
+              <div class="calendar-month">
+                <p class="no-margin white"><%=event.date.strftime("%B").first(3)%></p>
               </div>
-
-
-              <div class="event-local-box">
-                <div class="upercase ">
-                <p class="bold"><%= event.organizer.organizer_name%></p>
-                </div>
-                <div class="">
-                  <i class="fa fa-clock-o color-grey" style="padding-right: 2px;">
-                    <span><%= event.event_time.strftime("%H")%>h</span>
-                  </i>
-                  <i class="fa fa-map-marker color-grey" style="padding: 0 2px 0 4px;">
-                      <span><%= event.event_address_city%></span>
-                  </i>
-                </div>
+              <div class="calendar-day">
+                <p style="margin: 5px 0px 0px 0px;"><%=event.date.strftime("%02d")%></p>
               </div>
+            </div>
+
+            <div class="event-local-box">
+              <div class="upercase ">
+              <p class="bold" style="margin-bottom: 0;"><%= event.organizer.organizer_name%></p>
+              </div>
+              <div class="">
+                <i class="fa fa-clock-o color-grey" style="padding-right: 2px;">
+                  <span><%= event.event_time.strftime("%H")%>h</span>
+                </i>
+                <i class="fa fa-map-marker color-grey" style="padding: 0 2px 0 4px;">
+                    <span><%= event.event_address_city%></span>
+                </i>
+              </div>
+            </div>
+
           </div>
 
         </div>
