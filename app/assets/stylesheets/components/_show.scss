@@ -1,3 +1,12 @@
+.wrapper-curtain {
+  // height: calc(30vh - 70px);
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  // display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .box {
   margin-top: 50px;
   margin-bottom: 40px;
@@ -10,6 +19,7 @@
   background-color: #FFFFFF;
   border-radius: 5px;
 }
+
 
 .box-top {
   background-color: $off-white;
@@ -44,8 +54,6 @@
   // flex: 1;
   // padding-bottom: 100%;
   //   margin-bottom: -100%;
-
-
 }
 
 .box-top-info-price {
@@ -53,10 +61,8 @@
   bottom: 10px;
 }
 
-
 // .maxwidthheigth100 {
 //   max-width: 100%;
-
 // }
 
 .box-buy{
@@ -80,17 +86,9 @@
 }
 
 .box-description {
-  padding-left: 53px;
+  padding-left: 130px;
 }
 
-.wrapper-curtain {
-  height: calc(30vh - 70px);
-  /* if you have a 70px navbar => height: calc(100vh - 70px); */
-  background-size: cover !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .black{
   min-height: 100px;
