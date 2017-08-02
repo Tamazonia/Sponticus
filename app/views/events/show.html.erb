@@ -11,8 +11,17 @@
           <div class="box-top">
             <div class="col-xs-12 col-sm-8 no-padding">
               <div class="box-pic">
-                <!-- <img src="<%= @event.photo%>" alt="<%=@event.event_name%>"> -->
-                <%= cl_image_tag @event.photo, height: 400, width: 600, crop: :fit %>
+                <%if @event.photo?%>
+                  <%= cl_image_tag @event.photo, crop: :fit %>
+                <%else%>
+                  <% if @event.event_category == "Concert" %>
+                    <%= image_tag("band.jpg", height: "400", width: "600")%>
+                  <% elsif @event.event_category == "Theater" %>
+                    <%= image_tag("play.jpg", height: "400", width: "600")%>
+                  <% else%>
+                    <%= image_tag("opera.jpg", height: "400", width: "600")%>
+                  <% end %>
+                <%end%>
               </div>
             </div>
 
