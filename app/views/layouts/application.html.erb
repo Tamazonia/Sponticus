@@ -20,9 +20,9 @@
   <link href="https://fonts.googleapis.com/css?family=Ranga" rel="stylesheet">
   </head>
   <body>
-    <% if params[:action] != 'home' %>
+    <%# if params[:action] != 'home' %>
       <%= render 'shared/navbar'%>
-    <% end %>
+    <%# end %>
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%= render 'shared/footer' %>
