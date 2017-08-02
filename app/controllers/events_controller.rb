@@ -3,6 +3,18 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
 
+      # if @event.photo?
+      #   @photo = @event.photo
+      # else
+      #   if @event.event_category == "Concert"
+      #     @photo = "band.jpg"
+      #   elsif @event.event_category == "Theater"
+      #     @photo = "play.jpg"
+      #   else
+      #     @photo = "opera.jpg"
+      #   end
+      # end
+
   end
 
   def show
@@ -43,6 +55,12 @@ class EventsController < ApplicationController
     else
       redirect_to edit_event_path(@event)
     end
+
+
+
+
+
+
   end
 
   def destroy

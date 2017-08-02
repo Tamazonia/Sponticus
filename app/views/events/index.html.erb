@@ -6,16 +6,30 @@
 
   <div class="row">
   <h2 style="padding-left: 20px">All Events</h2>
-    <!-- <h4> Todays Tickets with a special Sponti Price</h4> -->
-    <% #events = @events.select {|event| event.tickets.count > 0 && event.date.today?} %>
 
 
     <%if @events.empty?%>
       <p>There are no Events today with sponti Tickets. Check out Events without sponti Tickets </p>
     <% else %>
       <% @events.each do |event| %>
+      <!-- **** to determine the picture that will be shown *** -->
+        <%if event.photo?%>
+          <%photo = event.photo%>
+        <%else%>
+          <%if event.event_category == "Concert"%>
+            <%photo = "band.jpg"%>
+          <%elsif event.event_category == "Theater"%>
+            <%photo = "play.jpg"%>
+          <%else%>
+            <%photo = "opera.jpg"%>
+          <%end%>
+        <%end%>
+      <!-- ****  *** -->
+
         <div class="col-xs-12 col-sm-4">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=event.photo%>);">
+
+          <div class="card">
+            <%= image_tag(photo, height: "100%", width: "100%")  %>
             <div class="card-category">
               <% if event.tickets.empty?%>
                 No Tix for sale
@@ -25,7 +39,7 @@
             </div>
             <div class="card-description">
               <h2 class="white"><%=event.event_name%></h2>
-              <!-- <p><%=event.organizer.organizer_name%></p> -->
+
             </div>
             <%=link_to "", event_path(event), class:"card-link" %>
           </div>
