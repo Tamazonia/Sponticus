@@ -13,6 +13,8 @@
             <%= f.input :event_address_city, placeholder: "Zürich", label: "City" %>
             <%= f.input :date %>
             <%= f.input :event_time %>
+            <%= f.input :photo %>
+            <%= f.input :photo_cache, as: :hidden %>
             <%= f.submit "Save", class: "btn btn-primary" %>
           <% end %>
 

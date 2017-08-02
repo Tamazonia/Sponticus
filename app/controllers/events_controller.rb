@@ -24,7 +24,7 @@ class EventsController < ApplicationController
       if @event.initial_added_tickets == true
         redirect_to new_event_ticket_path(@event)
       else
-        redirect_to user_path(current_user)
+        redirect_to event_path(@event)
       end
     else
       redirect_to new_event_path(@event)
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.update(event_params)
     if @event.save
-        redirect_to user_path(current_user)
+        redirect_to event_path(@event)
     else
       redirect_to edit_event_path(@event)
     end
@@ -52,7 +52,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:event_name, :event_category, :event_description, :event_address_title, :event_address_street, :event_address_postalcode, :event_address_city, :initial_added_tickets, :date, :event_time)
+    params.require(:event).permit(:event_name, :event_category, :event_description, :event_address_title, :event_address_street, :event_address_postalcode, :event_address_city, :initial_added_tickets, :date, :event_time, :photo, :photo_cache)
   end
 
 end
