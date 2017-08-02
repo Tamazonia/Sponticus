@@ -47,7 +47,7 @@ Event.create!(
   event_name: "Zigeunerbaron",
   event_category: "Opera/Operette",
   organizer: organizers.sample,
-  photo: "http://www.operette-hombrechtikon.ch/bilder/2017-der-zigeunerbaron.jpg",
+  photo: "/image/upload/v1501697552/zigeunerbaron_nfluqu.jpg",
   event_address_title: "Gemeindehaus Hombrechtikon",
   event_address_street: "Feldbachstrasse 12",
   event_address_postalcode: 8634,

@@ -92,7 +92,7 @@
                     <p style="font-weight: bold; padding-top: 5px;">Location</p>
                     <p class="no-margin"><%= @event.event_address_title%></p>
                     <p class="no-margin"><%= @event.event_address_street%></p>
-                    <p class="no-margin"><%= @event.event_address_postalcode%> <%= @event.event_address_title%> </p>
+                    <p class="no-margin"><%= @event.event_address_postalcode%> <%= @event.event_address_city%> </p>
                   </div>
 
                   <div>
@@ -119,78 +119,3 @@
     </div> <!-- container -->
   </div> <!-- wrapper-curtain -->
 
-<!-- <div class="black" style="background-color: black">
-</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-
-
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(242,242,242,0.3) 0%, rgba(242,242,242,0.3) 50%), url('https://static.pexels.com/photos/109669/pexels-photo-109669.jpeg');">
-  <div class="banner-content">
-    <div class="container">
-      <div class="row">
-        <h3 style="text-align: left" ><%= @event.event_name %> </h3>
-
-
-        <div class="col-xs-12 col-sm-6 col-margin-top">
-          <h5 style="text-align: left"> <strong> <%= @event.tickets.empty? ? "No Tickets for sale yet" : "Price CHF #{@event.tickets.last.price}"  %> </strong> </h5>
-          <h5 style="text-align: left"> <%= @event.tickets.empty? ? "" : " #{@event.tickets.last.amount_tickets_to_sell - @event.tickets.last.amount_tickets_sold } Tickets left"  %> </h5>
-
-            <br>
-            <br>
-
-            <% if @event.organizer.user == current_user %>
-              <%= link_to "Edit Event", edit_event_path(@event)%>
-              <br>
-              <% if @event.tickets.empty?%>
-                <%=link_to "Add Ticket", new_event_ticket_path(@event) %>
-              <% else %>
-                <%=link_to "Edit Ticket", edit_event_ticket_path(@event) %>
-              <% end %>
-            <% else %>
-              <% if current_user && current_user.organizer %>
-                <p> As an Organizer you cannot buy tickets. If you want to buy tickets, create a "normal" account</p>
-              <% elsif @event.tickets.last.amount_tickets_spare > 0 %>
-
-                <%= form_tag orders_path do %>
-                  how many tix ?<%= number_field("order_quantity", @order.quantity, in: 1..@ticket.amount_tickets_spare,) %>
-                  <%= hidden_field_tag 'ticket_id', @ticket.id %>
-                  <br>
-                  <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
-                <% end %>
-              <% else %>
-                <p> NO Sponti Tickets left </p>
-              <%end%>
-            <% end %>
-        </div>
-
-
-        <div class="col-xs-12 col-sm-6 col-margin-top" style="text-align: left;">
-          <p class="p-small-dark"> <strong> About <%= @event.event_name%></strong></p>
-          <p class="p-small-dark"> <%= @event.event_description%></p>
-          <br>
-          <p class="p-small-dark"> <strong> Where and When </strong></p>
-          <p class="p-small-dark"> <%= @event.date.strftime("%d.%m.%Y")%>,  <%= @event.event_time.strftime("%H:%M")%></p>
-          <p class="p-small-dark"> <%= @event.event_address_title%>, <%= @event.event_address_street%>, <%= @event.event_address_city%></p>
-
-      </div>
-
-
-
-      </div>
-    </div>
-  </div>
-</div>
-
- -->
