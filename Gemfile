@@ -11,6 +11,8 @@ gem 'redis'
 gem "money-rails"
 gem "coffee-script"
 gem "stripe"
+gem "cloudinary"
+gem "carrierwave"
 
 
 gem 'sass-rails'

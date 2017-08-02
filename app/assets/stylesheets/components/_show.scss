@@ -8,6 +8,10 @@
 }
 
 .box {
+  @media (max-width: 978px) {
+    margin-top: 0px;
+  }
+
   margin-top: 50px;
   margin-bottom: 40px;
   padding: 22px;
