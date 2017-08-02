@@ -8,7 +8,7 @@
 }
 
 .box {
-  @media (max-width: 978px) {
+  @media (max-width: $screen-sm-max) {
     margin-top: 0px;
   }
 
@@ -90,7 +90,11 @@
 }
 
 .box-description {
+  @media (max-width: $screen-sm-max) {
+    padding-left: 5px !important;
+  }
   padding-left: 130px;
+
 }
 
 
