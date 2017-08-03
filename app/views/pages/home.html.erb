@@ -8,7 +8,7 @@
     <br>
 
 
-        <%= link_to "See Todays Events", events_path, class: "btn btn-success"%>
+        <%= link_to "See Events", events_path, class: "btn btn-success"%>
       <!-- </div> -->
    </form>
   </div>
@@ -16,22 +16,80 @@
 
 <!-- cards of todays events -->
 
-<div class="container">
-  <div class="row">
-    <h4> Todays Events with a special Sponti Tickets</h4>
-    <% events = Event.all %>
-    <% events = events.select {|event| event.tickets.count > 0} %>
-    <% events.each do |event| %>
-      <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=event.photo%>);">
-          <div class="card-category"> <%= humanized_money_with_symbol(event.tickets.last.price) %> </div>
-          <div class="card-description">
-            <h2><%=event.event_name%></h2>
-            <p><%=event.organizer.organizer_name%></p>
+<div class="home-events-wrapper">
+  <div class="container">
+    <div class="row">
+    <h2 style="padding-left: 20px">Most recent events coming up</h2>
+
+
+      <%if @events.empty?%>
+        <p>There are no Events coming up </p>
+      <% else %>
+        <% @closest_events.each do |event| %>
+        <!-- **** to determine the picture that will be shown *** -->
+          <%if event.photo?%>
+            <%photo = event.photo%>
+          <%else%>
+            <%if event.event_category == "Concert"%>
+              <%photo = "band.jpg"%>
+            <%elsif event.event_category == "Theater"%>
+              <%photo = "play.jpg"%>
+            <%else%>
+              <%photo = "opera.jpg"%>
+            <%end%>
+          <%end%>
+        <!-- ****  *** -->
+
+          <div class="col-xs-12 col-sm-4">
+
+            <div class="card">
+              <%= image_tag(photo, height: "100%", width: "100%")  %>
+              <div class="card-category">
+                <% if event.tickets.empty?%>
+                  No Tix for sale
+                <% else %>
+                  CHF <%= event.tickets.last.price %>
+                <% end %>
+              </div>
+              <div class="card-description">
+                <h2 class="white"><%=event.event_name%></h2>
+
+              </div>
+              <%=link_to "", event_path(event), class:"card-link" %>
+            </div>
+
+
+            <div class="detail-box">
+              <div class="calendar-box">
+                <div class="calendar-month">
+                  <p class="no-margin white"><%=event.date.strftime("%B").first(3)%></p>
+                </div>
+                <div class="calendar-day">
+                  <p style="margin: 5px 0px 0px 0px;"><%=event.date.strftime("%02d")%></p>
+                </div>
+              </div>
+
+              <div class="event-local-box">
+                <div class="upercase ">
+                <p class="bold" style="margin-bottom: 0;"><%= event.organizer.organizer_name%></p>
+                </div>
+                <div class="">
+                  <i class="fa fa-clock-o color-grey" style="padding-right: 2px;">
+                    <span><%= event.event_time.strftime("%H")%>h</span>
+                  </i>
+                  <i class="fa fa-map-marker color-grey" style="padding: 0 2px 0 4px;">
+                      <span><%= event.event_address_city%></span>
+                  </i>
+                </div>
+              </div>
+
+            </div>
+
           </div>
-          <%=link_to "", event_path(event), class:"card-link" %>
-        </div>
-      </div>
-    <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+
   </div>
 </div>
