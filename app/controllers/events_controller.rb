@@ -1,20 +1,8 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!, only: [:new]
+
   def index
     @events = Event.all
-
-      # if @event.photo?
-      #   @photo = @event.photo
-      # else
-      #   if @event.event_category == "Concert"
-      #     @photo = "band.jpg"
-      #   elsif @event.event_category == "Theater"
-      #     @photo = "play.jpg"
-      #   else
-      #     @photo = "opera.jpg"
-      #   end
-      # end
-
   end
 
   def show
