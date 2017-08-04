@@ -10,35 +10,35 @@ Order.destroy_all
 Ticket.destroy_all
 Event.destroy_all
 Organizer.destroy_all
-User.destroy_all
+# User.destroy_all
 
 users = []
 organizers = []
 
-5.times do
-  users << User.create!(
-    email: Faker::Internet.email,
-    password: "123456"
-  )
-end
+# 5.times do
+#   users << User.create!(
+#     email: Faker::Internet.email,
+#     password: "123456"
+#   )
+# end
 
 
 
 organizers << Organizer.create!(
   organizer_name: "Operettenbühne Hombrechtikon",
-  user: users.sample
+  user: User.first
 )
 organizers << Organizer.create!(
   organizer_name: "Theater am Hechtplatz",
-  user: users.sample
+  user: User.first
 )
 organizers << Organizer.create!(
   organizer_name: "Zürcher Operenhaus",
-  user: users.sample
+  user: User.first
 )
 organizers << Organizer.create!(
   organizer_name: "Laienoper Hinterpfufikon",
-  user: users.sample
+  user: User.first
 )
 
 
@@ -46,7 +46,7 @@ organizers << Organizer.create!(
 Event.create!(
   event_name: "Zigeunerbaron",
   event_category: "Opera/Operette",
-  organizer: organizers.sample,
+  organizer: Organizer.first,
   photo: "image/upload/v1501697552/zigeunerbaron_nfluqu.jpg",
   event_address_title: "Gemeindehaus Hombrechtikon",
   event_address_street: "Feldbachstrasse 12",
@@ -58,10 +58,10 @@ Event.create!(
 )
 
 Event.create!(
-  event_name: "La Bohème",
+  event_name: "Wienerblut",
   event_category: "Opera/Operette",
-  organizer: organizers.sample,
-  photo: "https://www.metopera.org/metoperafiles/season/2016-17/operas/la_boh%C3%A8me/1380x591%20PDP%20hero/1380x591_boheme_top.jpg",
+  organizer: Organizer.first,
+  photo: "",
   event_address_title: "Gemeindehaus Hinterpfufikon",
   event_address_street: "Dorfstrasse 23",
   event_address_postalcode: 8888,
@@ -74,7 +74,7 @@ Event.create!(
 Event.create!(
   event_name: "The Show must go Wrong",
   event_category: "Theater",
-  organizer: organizers.sample,
+  organizer: Organizer.first,
   photo: "http://www.theaterhechtplatz.ch/media/filer_public_thumbnails/filer_public/16/07/16070fb8-dd89-4e18-8e0b-ff096ccfa80c/tsmgw_szenenfotos-14.jpg__800x450_q80_crop_subsampling-2_upscale.jpg",
   event_address_title: "Theater am Hechtplatz",
   event_address_street: "Hechtplatz",
@@ -88,7 +88,7 @@ Event.create!(
 Event.create!(
   event_name: "The visit",
   event_category: "Theater",
-  organizer: organizers.sample,
+  organizer: Organizer.first,
   event_address_title: "Theater am Hechtplatz",
   event_address_street: "Hechtplatz",
   event_address_postalcode: 8001,

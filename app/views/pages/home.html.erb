@@ -22,13 +22,13 @@
 <div class="home-events-wrapper">
   <div class="container">
     <div class="row">
-    <h2 style="padding-left: 20px">Most recent events coming up</h2>
+    <h2 style="padding-left: 20px">The 3 soonest events coming up</h2>
 
 
       <%if @events.empty?%>
         <p>There are no Events coming up </p>
       <% else %>
-        <% @closest_events.each do |event| %>
+        <% @closest_events[0...3].each do |event| %>
         <!-- **** to determine the picture that will be shown *** -->
           <%if event.photo?%>
             <%photo = event.photo%>
