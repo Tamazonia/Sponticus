@@ -41,6 +41,8 @@
   border-bottom: solid;
   border-color: $light-gray;
   border-width: 0.5px;
+  overflow: hidden;
+  height: 300px;
   // display: flex;
 
 }
@@ -52,7 +54,7 @@
 }
 
 .box-pic img{
-  max-width: 100%;
+  min-width: 100%;
   padding: 0px;
   // display: inline-block
 

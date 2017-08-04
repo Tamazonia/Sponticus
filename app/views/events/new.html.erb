@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+    <% if current_user.organizer %>
       <h1>New Event</h1>
 
           <%= simple_form_for [@organizer, @event] do |f| %>
@@ -21,6 +23,15 @@
 
 
         <br>
+    <%else%>
+      <p>In order to register an event, you have have an Organizer Account.</p>
+      <p> How can you sign upo as Organizer?</p>
+      <ul>
+        <li>First. <%= link_to "Logout",  destroy_user_session_path, method: :delete %></li>
+        <li>Then go to Signup and Register a new user and check the "I am an organizer" Box</li>
+
+      </ul>
+    <%end%>
     </div>
   </div>
 </div>
