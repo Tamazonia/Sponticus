@@ -1,15 +1,32 @@
+<div class="filter-wrapper home-navbar-margin">
+
+  <form action="<%=events_path%>" class="seach-form search">
+        <input type="text" name = "search[name]" id="search_name" class="search-input" placeholder = "Search for Title" value= <%=@name%>></input>
+        <input placeholder = "Search for Date" type="date" name = "search[date]" id="search_date" class="search-input"  value=<%=@date%>></input>
+        <select name="search[category]" id="search_category" class="search-input" type="text" style="text-align: center;">
+            <option value=> <%=@category || "Search for Category" %> </option>
+            <%@categories.each do |category|%>
+              <option><%=category%></option>
+            <%end%>
+        </select>
+        <button class="btn btn-success" style="height: 42px;">Find</button>
+      </form>
+
+</div>
+
 <div class="container fullscreen">
-
-
-
-
-
   <div class="row">
-  <h2 style="padding-left: 20px">All Events</h2>
+
+
+
+
+    <h2 style="padding-left: 20px">Events according your search criteria</h2>
+    <h3 style="padding-left: 20px"> <%=@name%> <%=@date%> <%=@category%></h3>
+
 
 
     <%if @events.empty?%>
-      <p>There are no Events today with sponti Tickets. Check out Events without sponti Tickets </p>
+      <p>There are no search results </p>
     <% else %>
       <% @events.each do |event| %>
       <!-- **** to determine the picture that will be shown *** -->
