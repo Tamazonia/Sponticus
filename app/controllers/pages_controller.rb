@@ -5,11 +5,15 @@ class PagesController < ApplicationController
   def home
     @user = current_user
     @events = Event.all
+    categories = []
+    @events.each do |event|
+      categories << event.event_category
+    end
+    @categories = categories.uniq
 
     @closest_events = @events.where("date >=?", Time.now).order(date: :asc)
 
 
-    # film.showings.where("show_time >= ?", Time.now).order(show_time: :asc).first
   end
 
   def about

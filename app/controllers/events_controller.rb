@@ -1,8 +1,43 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!, only: [:new]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
+    @search = Search.new
     @events = Event.all
+
+    if params[:search] && params[:search][:name].present?
+      @name = params[:search][:name]
+      @events = @events.where("event_name ILIKE  ?", "%#{@name}%")
+    end
+
+    if params[:search] && params[:search][:date].present?
+      @date = params[:search][:date]
+      @events = @events.where("DATE(date) = ?", "%#{@date}%")
+    end
+
+    if params[:search] && params[:search][:category].present?
+      @category = params[:search][:category]
+      # @events = @events.joins(:event_categories).where(event_categories: { name:  params[:search][:event_category]})
+      @events = @events.where("event_category ILIKE  ?", "%#{@category}%")
+    end
+
+     # if params[:search] && params[:search][:street_name].present?
+     #  @street = params[:search][:street_name]
+     #  @events = @events.where("street_name ILIKE  ?", "%#{@street}%")
+
+
+      #@doctors = Doctor.near([@doctor.latitude, @doctor.longitude], 10)
+      # @doctors.each do |doctor|
+      #    @doctors = @doctors.near([doctor.latitude, doctor.longitude], 1000)
+      # end
+
+    categories = []
+    @events.each do |event|
+      categories << event.event_category
+    end
+    @categories = categories.uniq
+
   end
 
   def show

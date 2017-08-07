@@ -8,3 +8,38 @@
   background-color: $light-gray;
   padding-bottom: 20px;
 }
+
+.title {
+  text-align: center;
+  padding-bottom: 6px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.search-input {
+  height: 42px;
+    border-radius: 7px;
+    border: solid;
+    border-width: 1px;
+    padding-left: 10px;
+}
+
+.home-navbar-margin {
+   @media (max-width: $screen-sm-max) {
+    margin-top: 70px;
+  }
+}
+
+.filter-wrapper {
+  background-color: $light-gray;
+  padding: 12px;
+  text-align: center;
+}
+
+
+// select#search-category.search-input{
+//   height: 42px;
+//     border-radius: 7px;
+//     border: solid;
+//     border-width: 1px;
+// }
