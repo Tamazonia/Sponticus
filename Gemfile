@@ -13,6 +13,8 @@ gem "coffee-script"
 gem "stripe"
 gem "cloudinary"
 gem "carrierwave"
+gem "simple-form-datepicker"
+gem 'bootstrap-datepicker-rails'
 
 
 gem 'sass-rails'

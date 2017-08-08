@@ -17,11 +17,14 @@
 }
 
 .search-input {
-  height: 42px;
-    border-radius: 7px;
-    border: solid;
-    border-width: 1px;
-    padding-left: 10px;
+  height: 38px;
+  border-radius: 3px;
+  border: solid;
+  border-width: 1px;
+  padding-left: 10px;
+  min-width: 35vh;
+  margin: 0px;
+  display: inline-block;
 }
 
 .home-navbar-margin {
@@ -29,6 +32,7 @@
     margin-top: 70px;
   }
 }
+
 
 .filter-wrapper {
   background-color: $light-gray;
