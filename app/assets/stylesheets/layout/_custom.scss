@@ -42,6 +42,9 @@ span {
 }
 
 h1 {
+  @media (max-width: 978px) {
+    font-size: 30px !important;
+  }
   color: $midnight;
   font-family: 'Didact Gothic', sans-serif;
   font-size: 38px;

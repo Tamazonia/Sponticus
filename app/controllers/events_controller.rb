@@ -5,21 +5,38 @@ class EventsController < ApplicationController
     @search = Search.new
     @events = Event.all
 
-    if params[:search] && params[:search][:name].present?
-      @name = params[:search][:name]
+    if params[:event_search] && params[:event_search][:event_name].present?
+      @name = params[:event_search][:event_name]
       @events = @events.where("event_name ILIKE  ?", "%#{@name}%")
     end
 
-    if params[:search] && params[:search][:date].present?
-      @date = params[:search][:date]
+    if params[:event_search] && params[:event_search][:event_category].present?
+      @category = params[:event_search][:event_category]
+      @events = @events.where("event_category ILIKE  ?", "%#{@category}%")
+    end
+
+    if params[:event_search] && params[:event_search][:event_date].present?
+      @date = params[:event_search][:event_date]
       @events = @events.where("DATE(date) = ?", "%#{@date}%")
     end
 
-    if params[:search] && params[:search][:category].present?
-      @category = params[:search][:category]
-      # @events = @events.joins(:event_categories).where(event_categories: { name:  params[:search][:event_category]})
-      @events = @events.where("event_category ILIKE  ?", "%#{@category}%")
-    end
+
+
+    # if params[:search] && params[:search_event][:event_name].present?
+    #   @name = params[:search][:event_name]
+    #   @events = @events.where("event_name ILIKE  ?", "%#{@name}%")
+    # end
+
+    # if params[:search] && params[:search][:date].present?
+    #   @date = params[:search][:date]
+    #   @events = @events.where("DATE(date) = ?", "%#{@date}%")
+    # end
+
+    # if params[:search] && params[:search][:category].present?
+    #   @category = params[:search][:category]
+    #   # @events = @events.joins(:event_categories).where(event_categories: { name:  params[:search][:event_category]})
+    #   @events = @events.where("event_category ILIKE  ?", "%#{@category}%")
+    # end
 
      # if params[:search] && params[:search][:street_name].present?
      #  @street = params[:search][:street_name]

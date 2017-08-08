@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     @categories = categories.uniq
 
     @closest_events = @events.where("date >=?", Time.now).order(date: :asc)
-
+    @search = Search.new
 
   end
 
