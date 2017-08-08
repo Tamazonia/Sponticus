@@ -1,11 +1,11 @@
 <div class="navbar-wagon navbar-fixed-top">
   <!-- Logo -->
-    <a href="/"><%= image_tag "logo_white.png", size: "200x90", style: "text-align: left" %></a>
+    <a href="/"><%= image_tag "logo_white.png", size: "100x45", style: "text-align: left" %></a>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm ">
     <% if !current_user %>
-        <%= link_to "See Events",  events_path, class: "navbar-wagon-link" %>
+        <%= link_to "See all Events",  events_path, class: "navbar-wagon-link" %>
         <%= link_to "Login",  new_user_session_path, class: "navbar-wagon-link" %>
         <%= link_to "Create Event", new_event_path, class: "navbar-wagon-link, btn-outline" %>
     <%end%>
@@ -25,13 +25,13 @@
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <% if !current_user %>
             <li><%= link_to "Create Event", new_event_path%></li>
-            <li><%= link_to "See Events",  events_path, class: "navbar-wagon-link" %></li>
+            <li><%= link_to "See all Events",  events_path, class: "navbar-wagon-link" %></li>
             <li><%= link_to "Login",  new_user_session_path, class: "navbar-wagon-link" %></li>
 
           <% end %>
           <% if current_user %>
-            <li><%= link_to "Sell Sponti Tickets", new_event_path%></li>
-            <li><%= link_to "Sponti Events",  events_path, class: "navbar-wagon-link" %></li>
+            <li><%= link_to "Create Event", new_event_path%></li>
+            <li><%= link_to "See all Events",  events_path, class: "navbar-wagon-link" %></li>
             <li><%= link_to "Profile",  user_path(current_user), class: "navbar-wagon-link" %></li>
             <li><%= link_to "Logout",  destroy_user_session_path, method: :delete %></li>
           <% end %>
