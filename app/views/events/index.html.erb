@@ -1,12 +1,14 @@
 <div class="filter-wrapper home-navbar-margin">
 
   <div class="container">
-    <%= simple_form_for :event_search, url: events_path, method: :get, html: {class: 'form-inline'} do |f| %>
+    <div class="search-form">
+      <%= simple_form_for :event_search, url: events_path, method: :get, html: {class: 'form-inline'} do |f| %>
         <%= f.input :event_name, placeholder: "Search for Event Name", label: false, input_html: {value: @name, class: 'search-input'} %>
         <%= f.input :event_category, prompt: "Search for Category", label: false, collection: @categories, :selected => @category, html:{class: 'search-input'}, input_html: {class: 'search-input'}%>
         <%= f.input :event_date, as: :string, label: false, input_html: {type: :date}, placeholder: "Search for Date", input_html: {value: @date, class: 'search-input'} %>
         <%= f.submit "Find", class:"btn btn-primary" %>
       <% end %>
+    </div>
   </div>
 
 </div>
@@ -17,8 +19,8 @@
 
 
 
-    <h2 style="padding-left: 20px">Events according your search criteria</h2>
-    <h3 style="padding-left: 20px"> <%=@name%> <%=@date%> <%=@category%></h3>
+    <!-- <h2 style="padding-left: 20px">Events according your search criteria</h2> -->
+    <!-- <h3 style="padding-left: 20px"> <%=@name%> <%=@date%> <%=@category%></h3> -->
 
 
 
