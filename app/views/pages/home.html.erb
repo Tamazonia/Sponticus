@@ -13,12 +13,14 @@ $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
       <div class="title">
         <h1>Be Sponti! Find an Event</h1>
       </div>
-      <%= simple_form_for :event_search, url: events_path, method: :get, html: {class: 'form-inline'} do |f| %>
-        <%= f.input :event_name, placeholder: "Search for Event Name", label: false, input_html: {class: 'search-input'} %>
-        <%= f.input :event_category, prompt: "Search for Category", label: false, collection: @categories, input_html: {class: 'search-input'}%>
-        <%= f.input :event_date, as: :string, label: false, input_html: {type: :date, class: 'search-input'}, placeholder: "Search for Date"%>
-        <%= f.submit "Find", class:"btn btn-primary" %>
-      <% end %>
+      <div class="search-form">
+        <%= simple_form_for :event_search, url: events_path, method: :get, html: {class: 'form-inline'} do |f| %>
+          <%= f.input :event_name, placeholder: "Search for Event Name", label: false, input_html: {class: 'search-input'} %>
+          <%= f.input :event_category, prompt: "Search for Category", label: false, collection: @categories, input_html: {class: 'search-input'}%>
+          <%= f.input :event_date, as: :string, label: false, input_html: {type: :date, class: 'search-input'}, placeholder: "Search for Date"%>
+          <%= f.submit "Find", class:"btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
 
 </div>
