@@ -1,7 +1,7 @@
 
 <%pic = "concert_hall.jpeg"%>
 
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path(pic)%>;">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=image_path(pic)%>);">
   <div class="banner-content">
 
     <h1>Be Sponti! Find an Event</h1>
@@ -47,7 +47,7 @@
 
             <!-- <div class="card"> -->
               <%#= image_tag(photo, height: "100%", width: "100%")  %>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path(photo)%>;">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=image_path(photo)%>);">
               <div class="card-category">
                 <% if event.tickets.empty?%>
                   No Tix for sale
