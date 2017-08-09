@@ -1,32 +1,5 @@
-<!-- <script>
-$('#datepicker').datepicker({format: 'yyyy-mm-dd'});
-</script> -->
 
-<!-- banner -->
-
-<!-- <div class="banner" style="background-image: url('https://static.pexels.com/photos/109669/pexels-photo-109669.jpeg');"> -->
-<!-- <div class="banner" style="background-image: url('https://static.pexels.com/photos/45258/ballet-production-performance-don-quixote-45258.jpeg');"> -->
-<!-- <div class="banner home-navbar-margin">
-
-    <%= image_tag("Concerthall 2.jpg")%>
-    <div class="banner-text">
-      <div class="title">
-        <h1>Be Sponti! Find an Event</h1>
-      </div>
-      <div class="search-form">
-        <%= simple_form_for :event_search, url: events_path, method: :get, html: {class: 'form-inline'} do |f| %>
-          <%= f.input :event_name, placeholder: "Search for Event Name", label: false, input_html: {class: 'search-input'} %>
-          <%= f.input :event_category, prompt: "Search for Category", label: false, collection: @categories, input_html: {class: 'search-input'}%>
-          <%= f.input :event_date, as: :string, label: false, input_html: {type: :date, class: 'search-input'}, placeholder: "Search for Date"%>
-          <%= f.submit "Find", class:"btn btn-primary" %>
-        <% end %>
-      </div>
-    </div>
-
-</div> -->
-
-
-<div class="banner" style="background-image: url(<%=asset_path("concert_hall2.jpeg")%>;">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path('concert_hall.jpeg')%>;">
   <div class="banner-content">
 
     <h1>Be Sponti! Find an Event</h1>
