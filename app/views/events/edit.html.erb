@@ -20,7 +20,7 @@
             <%= f.input :event_time %>
             <%= f.input :photo %>
             <%= f.input :photo_cache, as: :hidden %>
-            <%= f.input :initial_added_tickets, as: :radio_buttons, label: "Would you like to add Sponti Tickets to this Event?"%>
+            <%#= f.input :initial_added_tickets, as: :radio_buttons, label: "Would you like to add Sponti Tickets to this Event?"%>
             <%= f.submit "Save Sponti Event", class: "btn btn-primary" %>
           <% end %>
 
@@ -39,3 +39,7 @@
     </div>
   </div>
 </div>
+
+<%= content_for(:after_js) do %>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=#{ENV['GOOGLE_API_BROWSER_KEY']}"></script>
+<% end %>
