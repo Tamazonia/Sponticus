@@ -58,14 +58,14 @@ Event.create!(
 )
 
 Event.create!(
-  event_name: "Wienerblut",
-  event_category: "Opera/Operette",
+  event_name: "RoRock",
+  event_category: "Concert",
   organizer: Organizer.first,
   photo: "",
-  event_address_title: "Gemeindehaus Hinterpfufikon",
-  event_address_street: "Dorfstrasse 23",
-  event_address_postalcode: 8888,
-  event_address_city: "Hinterpfufikon",
+  event_address_title: "Gemeindehaus Rothenburg",
+  event_address_street: "Stationsstrasse 4",
+  event_address_postalcode: 6023,
+  event_address_city: "Rothenburg",
   event_description: "This is a french traditionl Opera. Dont miss it",
   event_time: DateTime.now ,
   date: DateTime.now + 10.days

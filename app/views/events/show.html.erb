@@ -1,7 +1,10 @@
 
+<%=content_for(:title) do %>
+  Sponticus - <%=@event.event_name%>
+<% end %>
+
   <!-- <div class="wrapper-curtain" style="background-image: url('https://static.pexels.com/photos/109669/pexels-photo-109669.jpeg');"> -->
-  <div class="wrapper-curtain">
-    <%#= image_tag("Concerthall 2.jpeg") %>
+
 
     <div class="container">
       <div class="row">
@@ -124,8 +127,32 @@
             </div>
           </div>
 
+          <%if @event.latitude.present?%>
+            <div id="map"></div>
+          <%end%>
+
+           <% content_for(:after_js) do %>
+              <%= javascript_tag do %>
+                $(document).ready(function() {
+                  var handler = Gmaps.build('Google');
+                  handler.buildMap({ internal: { id: 'map' } }, function() {
+                    markers = handler.addMarkers(<%= raw @hash.to_json %>);
+                    handler.bounds.extendWith(markers);
+                    handler.fitMapToBounds();
+                    if (markers.length == 0) {
+                      handler.getMap().setZoom(2);
+                    } else if (markers.length == 1) {
+                      handler.getMap().setZoom(14);
+                    }
+                  });
+                });
+              <% end %>
+            <% end %>
+
         </div> <!-- box -->
       </div> <!-- row -->
     </div> <!-- container -->
-  </div> <!-- wrapper-curtain -->
 
+
+<!-- MAP -->
+<!-- END MAP -->

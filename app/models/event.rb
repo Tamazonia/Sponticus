@@ -5,8 +5,16 @@ class Event < ApplicationRecord
 
   mount_uploader :photo, EventphotoUploader
 
-  private
+  geocoded_by :full_address
+  after_validation :geocode, if: :full_address_changed?
 
+  def full_address
+    "#{event_address_street}, #{event_address_city}"
+  end
 
-
+  def full_address_changed?
+    event_address_street_changed? || event_address_city_changed?
+  end
 end
+
+

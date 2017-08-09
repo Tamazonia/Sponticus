@@ -20,34 +20,6 @@ class EventsController < ApplicationController
       @events = @events.where("DATE(date) = ?", "%#{@date}%")
     end
 
-
-
-    # if params[:search] && params[:search_event][:event_name].present?
-    #   @name = params[:search][:event_name]
-    #   @events = @events.where("event_name ILIKE  ?", "%#{@name}%")
-    # end
-
-    # if params[:search] && params[:search][:date].present?
-    #   @date = params[:search][:date]
-    #   @events = @events.where("DATE(date) = ?", "%#{@date}%")
-    # end
-
-    # if params[:search] && params[:search][:category].present?
-    #   @category = params[:search][:category]
-    #   # @events = @events.joins(:event_categories).where(event_categories: { name:  params[:search][:event_category]})
-    #   @events = @events.where("event_category ILIKE  ?", "%#{@category}%")
-    # end
-
-     # if params[:search] && params[:search][:street_name].present?
-     #  @street = params[:search][:street_name]
-     #  @events = @events.where("street_name ILIKE  ?", "%#{@street}%")
-
-
-      #@doctors = Doctor.near([@doctor.latitude, @doctor.longitude], 10)
-      # @doctors.each do |doctor|
-      #    @doctors = @doctors.near([doctor.latitude, doctor.longitude], 1000)
-      # end
-
     categories = []
     @events.each do |event|
       categories << event.event_category
@@ -60,7 +32,17 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @ticket = @event.tickets.last
     @order = Order.new(ticket: @ticket)
-    # @order.unit_price = @ticket.price
+    # @event_coordinates = { lat: @event.latitude, lng: @event.longitude }
+    # @events = @event
+
+
+    # @events = Event.where.not(latitude: nil, longitude: nil)
+
+    @hash = Gmaps4rails.build_markers(@event) do |event, marker|
+      marker.lat event.latitude
+      marker.lng event.longitude
+      # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
+    end
   end
 
   def new
