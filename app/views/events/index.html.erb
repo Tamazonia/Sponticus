@@ -4,7 +4,7 @@
     <div class="search-form">
       <%= simple_form_for :event_search, url: events_path, method: :get, html: {class: 'form-inline'} do |f| %>
         <%= f.input :event_name, placeholder: "Search for Event Name", label: false, input_html: {value: @name, class: 'search-input'} %>
-        <%= f.input :event_category, prompt: "Search for Category", label: false, collection: @categories, :selected => @category, html:{class: 'search-input'}%>
+        <%= f.input :event_category, prompt: "Search for Category", label: false, collection: @categories, :selected => @category, input_html:{class: 'search-input'}%>
         <%= f.input :event_date, prompt: "Search for Date", as: :string, label: false, input_html: {type: :date, value: @date, class: 'search-input'}%>
         <%= f.submit "Find", class:"btn btn-primary" %>
       <% end %>

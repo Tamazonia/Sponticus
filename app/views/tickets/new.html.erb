@@ -1,12 +1,14 @@
-<div class="container">
+
+<div class="container fullscreen">
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1>New Ticket</h1>
+    <div class="col-xs12 col-sm-6 col-sm-offset-3">
 
+      <div class="form-login home-navbar-margin">
 
+          <h1>New Ticket</h1>
           <%= simple_form_for [@event, @ticket] do |f| %>
-            <%= f.input :amount_tickets_to_sell, prompt: "How many tickets would you like to sell?" %>
-            <%= f.input :price,  label: "Choose your price (CHF)" %>
+            <%= f.input :amount_tickets_to_sell, placeholder: "How many tickets would you like to sell?" %>
+            <%= f.input :price,  label: "Choose your price (CHF)", prompt: "How much should one ticket cost?" %>
             <%= f.submit "Add Sponti Ticket", class: "btn btn-primary" %>
             <% if @ticket.errors.any? %>
               <!-- <div id="error_explanation"> -->
@@ -17,9 +19,7 @@
               </div>
             <% end %>
           <% end %>
-
-
-        <br>
+      </div>
     </div>
   </div>
 </div>

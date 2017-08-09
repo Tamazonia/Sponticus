@@ -11,8 +11,8 @@
     <%end%>
 
     <% if current_user %>
-      <%= link_to "See Events",  events_path, class: "navbar-wagon-link" %>
-      <%= link_to "Profile",  user_path(current_user), class: "navbar-wagon-link" %>
+      <%= link_to "See all Events",  events_path, class: "navbar-wagon-link" %>
+      <%= link_to "Your Profile",  user_path(current_user), class: "navbar-wagon-link" %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-wagon-link" %>
       <%= link_to "Create Event",  new_event_path, class: "navbar-wagon-link, btn-outline" %>
     <%end%>
@@ -32,7 +32,7 @@
           <% if current_user %>
             <li><%= link_to "Create Event", new_event_path%></li>
             <li><%= link_to "See all Events",  events_path, class: "navbar-wagon-link" %></li>
-            <li><%= link_to "Profile",  user_path(current_user), class: "navbar-wagon-link" %></li>
+            <li><%= link_to "Your Profile",  user_path(current_user), class: "navbar-wagon-link" %></li>
             <li><%= link_to "Logout",  destroy_user_session_path, method: :delete %></li>
           <% end %>
         </ul>
