@@ -51,6 +51,9 @@
   <% else %>
     <p><%= @user.email %></p>
     <%= link_to "Edit Email and Password", edit_user_registration_path(current_user)%>
+
+    <p>You are not an signed-up as an Organizer, so you cannot create events. Would you like to create Events</p>
+    <%= link_to "Become an Organizer", new_organizer_path%>
     <br>
     <br>
 
