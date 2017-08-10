@@ -1,94 +1,125 @@
 <div class="container fullscreen">
-  <% if current_user.organizer %>
-    <p>You are an organizer</p>
-    <p><%= @organizer.organizer_name %></p>
-    <p><%= @organizer.organizer_address_street%></p>
-    <p><%= @organizer.organizer_address_postalcode%></p>
-    <p><%= @organizer.organizer_address_city%></p>
-    <%= link_to "Edit Address", edit_organizer_path(@organizer)%>
-    <br>
-    <%= link_to "Edit Email and Password", edit_user_registration_path(current_user)%>
-  <br>
-  <br>
+  <div class="box no-padding">
+    <div class="tabs">
+      <a class="tab active" data-target="#user-info">
+        <h3>Profile</h3>
+      </a>
 
-    <% if @organizer.nil?  %>
-      <p>You do not have any Events</p>
-    <% else %>
-      <% @events = @organizer.events %>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Tickets selling?</th>
-              <th>Price CHF</th>
-              <th>To sell</th>
-              <th>Sold</th>
-              <th></th>
+      <a class="tab" data-target="#tickets-bought">
+        <h3>Tickets you bought</h3>
+      </a>
+      <a class="tab" data-target="#events">
+        <h3>Your Events</h3>
+      </a>
+    </div>
 
-            </tr>
-          </thead>
-          <tbody>
-            <% @events.each do |event| %>
-              <tr>
-                <td><%= link_to event.event_name, event_path(event) %> </td>
-                <td><%= event.date.strftime("%d.%m.%Y")%> </td>
-                <td><%= event.tickets.empty? ? "No" : "Yes" %> </td>
-                <td><%= event.tickets.last ? event.tickets.last.price : "-" %> </td>
-                <td><%= event.tickets.last ? event.tickets.last.amount_tickets_to_sell : "-" %>
-                <td><%= event.tickets.last ? event.tickets.last.amount_tickets_sold : "-" %></td>
-                <td></td>
-                <td>
-                </td>
-              </tr>
-            <%end%>
-          </tbody>
-        </table>
-    <% end %>
+    <div class="container">
+      <div class="tab-content" id="user-info">
+        <p><%= @user.email %></p>
+        <%= link_to "Edit Email and Password", edit_user_registration_path(current_user)%>
+        <% if current_user.organizer %>
+          <p>You are an organizer</p>
+          <p><%= @organizer.organizer_name %></p>
+          <p><%= @organizer.organizer_address_street%></p>
+          <p><%= @organizer.organizer_address_postalcode%></p>
+          <p><%= @organizer.organizer_address_city%></p>
+          <%= link_to "Edit Address", edit_organizer_path(@organizer)%>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="tab-content hidden" id="tickets-bought">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Event Date</th>
+                  <th>Quantity</th>
+                  <th>Price CHF</th>
+                  <th>Total Price CHF</th>
+                  <th>State</th>
+                  <th></th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <%@orders.each do |order|%>
+                  <tr>
+                    <td><%= link_to order.ticket.event.event_name, event_path(order.ticket.event) %> </td>
+                    <td><%= order.ticket.event.date.strftime("%d.%m.%Y")%> </td>
+                    <td><%= order.quantity%> </td>
+                    <td><%= order.unit_price_cents %>
+                    <td><%= order.amount %> </td>
+                    <td><%= order.state %></td>
+                    <td></td>
+                    <td>
+                    </td>
+                  </tr>
+                <%end%>
+              </tbody>
+            </table>
+        </div>
+      </div>
+
+      <div class="container">
+       <div class="tab-content hidden" id="events">
+        <% if current_user.organizer %>
 
 
 
-  <% else %>
-    <p><%= @user.email %></p>
-    <%= link_to "Edit Email and Password", edit_user_registration_path(current_user)%>
+              <% if @organizer.nil?  %>
+                <p>You do not have any Events</p>
+              <% else %>
+                <% @events = @organizer.events %>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Tickets selling?</th>
+                        <th>Price CHF</th>
+                        <th>To sell</th>
+                        <th>Sold</th>
+                        <th></th>
 
-    <p>You are not an signed-up as an Organizer, so you cannot create events. Would you like to create Events</p>
-    <%= link_to "Become an Organizer", new_organizer_path%>
-    <br>
-    <br>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @events.each do |event| %>
+                        <tr>
+                          <td><%= link_to event.event_name, event_path(event) %> </td>
+                          <td><%= event.date.strftime("%d.%m.%Y")%> </td>
+                          <td><%= event.tickets.empty? ? "No" : "Yes" %> </td>
+                          <td><%= event.tickets.last ? event.tickets.last.price : "-" %> </td>
+                          <td><%= event.tickets.last ? event.tickets.last.amount_tickets_to_sell : "-" %>
+                          <td><%= event.tickets.last ? event.tickets.last.amount_tickets_sold : "-" %></td>
+                          <td></td>
+                          <td>
+                          </td>
+                        </tr>
+                      <%end%>
+                    </tbody>
+                  </table>
+              <% end %>
 
-    <p>Tickets you bought</p>
 
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Event Date</th>
-              <th>Quantity</th>
-              <th>Price CHF</th>
-              <th>Total Price CHF</th>
-              <th>State</th>
-              <th></th>
+            <% else %>
 
-            </tr>
-          </thead>
-          <tbody>
-            <%@orders.each do |order|%>
-              <tr>
-                <td><%= link_to order.ticket.event.event_name, event_path(order.ticket.event) %> </td>
-                <td><%= order.ticket.event.date.strftime("%d.%m.%Y")%> </td>
-                <td><%= order.quantity%> </td>
-                <td><%= order.unit_price_cents %>
-                <td><%= order.amount %> </td>
-                <td><%= order.state %></td>
-                <td></td>
-                <td>
-                </td>
-              </tr>
-            <%end%>
-          </tbody>
-        </table>
 
-  <% end %>
+              <p>You are not an signed-up as an Organizer, so you cannot create events. Would you like to create Events</p>
+              <%= link_to "Become an Organizer", new_organizer_path%>
+              <br>
+              <br>
+
+
+
+            <% end %>
+      </div>
+    </div>
+
+
+  </div>
 </div>
