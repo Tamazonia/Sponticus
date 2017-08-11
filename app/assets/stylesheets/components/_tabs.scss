@@ -1,0 +1,44 @@
+.tabs {
+  // background: #53443F;
+  display: flex;
+  // padding: 10px 10px 0 10px
+}
+.tabs a {
+  color: white;
+}
+.tabs a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+}
+.tabs h3 {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 0;
+}
+.tabs p {
+  opacity: 0.5;
+  margin-bottom: 0;
+}
+.tab {
+  background: $light-gray;
+  flex: 0 0 33.3%;
+  text-align: center;
+  padding: 20px 0;
+}
+.tab:first-child {
+  border-radius: 5px 0 0 0;
+}
+.tab:nth-child(2) {
+  border-left: solid;
+  border-right: solid;
+  border-color: white;
+  border-width: 1px;
+}
+.tab:last-child {
+  border-radius: 0 5px 0 0;
+}
+.tab.active {
+  background: white;
+  color: black;
+}

@@ -29,12 +29,9 @@
         <br>
       <%else%>
       <p>In order to register an event, you have have an Organizer Account.</p>
-      <p> How can you sign upo as Organizer?</p>
-      <ul>
-        <li>First. <%= link_to "Logout",  destroy_user_session_path, method: :delete %></li>
-        <li>Then go to Signup and Register a new user and check the "I am an organizer" Box</li>
-
-      </ul>
+      <p> How can you sign up as Organizer?</p>
+      <p>Just click on the list and turn your account int an organizer-account</p>
+      <%= link_to "Become an Organizer", new_organizer_path%>
       <%end%>
       </div>
     </div>
