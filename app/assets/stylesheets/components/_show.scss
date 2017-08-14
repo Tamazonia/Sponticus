@@ -34,6 +34,9 @@
 
 
 .box-top {
+   @media (max-width: $screen-sm-max) {
+    height: 100%;
+  }
   background-color: $off-white;
   height: 100%;
   width: 100%;
@@ -114,7 +117,7 @@
 
 
 #map {
-  width: 79%;
+  width: 87%;
   height: 400px;
   margin-left: 126px;
   margin-right: 20px;
