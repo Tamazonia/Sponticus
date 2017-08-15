@@ -21,11 +21,11 @@
                   <%= cl_image_tag @event.photo, crop: :fit %>
                 <%else%>
                   <% if @event.event_category == "Concert" %>
-                    <%= image_tag("band.jpg", height: "400", width: "600")%>
+                    <%= image_tag("band.jpg")%>
                   <% elsif @event.event_category == "Theater" %>
-                    <%= image_tag("play.jpg", height: "400", width: "600")%>
+                    <%= image_tag("play.jpg")%>
                   <% else%>
-                    <%= image_tag("opera.jpg", height: "400", width: "600")%>
+                    <%= image_tag("opera.jpg")%>
                   <% end %>
                 <%end%>
               </div>
@@ -47,7 +47,7 @@
           <div class="box-buy">
             <div class="col-xs-12 col-sm-8">
 
-              <div class="share" style="padding-top: 10px;">
+              <div style="padding-top: 10px;">
                 <% if !@event.tickets.empty?%>
                   <p style="margin-bottom: 0px;">CHF <%=@event.tickets.last.price%></p>
                   <p style="margin-top: 0px;"> <%= @event.tickets.empty? ? "" : " #{@event.tickets.last.amount_tickets_to_sell - @event.tickets.last.amount_tickets_sold } Tickets left"  %> </p>
