@@ -10,17 +10,17 @@ Order.destroy_all
 Ticket.destroy_all
 Event.destroy_all
 Organizer.destroy_all
-# User.destroy_all
+User.destroy_all
 
 users = []
 organizers = []
 
-# 5.times do
-#   users << User.create!(
-#     email: Faker::Internet.email,
-#     password: "123456"
-#   )
-# end
+5.times do
+  users << User.create!(
+    email: Faker::Internet.email,
+    password: "123456"
+  )
+end
 
 
 
@@ -30,16 +30,9 @@ organizers << Organizer.create!(
 )
 organizers << Organizer.create!(
   organizer_name: "Theater am Hechtplatz",
-  user: User.first
+  user: User.last
 )
-organizers << Organizer.create!(
-  organizer_name: "Zürcher Operenhaus",
-  user: User.first
-)
-organizers << Organizer.create!(
-  organizer_name: "Laienoper Hinterpfufikon",
-  user: User.first
-)
+
 
 
 
@@ -87,6 +80,102 @@ Event.create!(
 
 Event.create!(
   event_name: "The visit",
+  event_category: "Theater",
+  organizer: Organizer.first,
+  event_address_title: "Theater am Hechtplatz",
+  event_address_street: "Hechtplatz",
+  event_address_postalcode: 8001,
+  event_address_city: "Zürich",
+  event_description: "VSwiss classic play by Friedrich Dürrenmatt: Ill is an old man in his seventies who owns a shop in the town of Guellen. Like everyone else, he is very poor. Of all the people in Guellen, he was the closest to Claire Zachanassian, who was his lover when they were young. He got her pregnant and then bribed two men, Koby and Loby, to lie to a judge and say that they had slept with her and thereby avoided any responsibility for the child. Heartbroken, Claire left Guellen and became a prostitute. When she returns decades later, she still holds a bitter grudge against Ill and offers the impoverished town a million dollars if they kill him.",
+  event_time: DateTime.now,
+  date: DateTime.now
+)
+
+Event.create!(
+  event_name: "Tasdfast",
+  event_category: "Theater",
+  organizer: Organizer.first,
+  event_address_title: "Theater am Hechtplatz",
+  event_address_street: "Hechtplatz",
+  event_address_postalcode: 8001,
+  event_address_city: "Zürich",
+  event_description: "VSwiss classic play by Friedrich Dürrenmatt: Ill is an old man in his seventies who owns a shop in the town of Guellen. Like everyone else, he is very poor. Of all the people in Guellen, he was the closest to Claire Zachanassian, who was his lover when they were young. He got her pregnant and then bribed two men, Koby and Loby, to lie to a judge and say that they had slept with her and thereby avoided any responsibility for the child. Heartbroken, Claire left Guellen and became a prostitute. When she returns decades later, she still holds a bitter grudge against Ill and offers the impoverished town a million dollars if they kill him.",
+  event_time: DateTime.now,
+  date: DateTime.now
+)
+
+Event.create!(
+  event_name: "asdfasdfasf",
+  event_category: "Theater",
+  organizer: Organizer.first,
+  event_address_title: "Theater am Hechtplatz",
+  event_address_street: "Hechtplatz",
+  event_address_postalcode: 8001,
+  event_address_city: "Zürich",
+  event_description: "VSwiss classic play by Friedrich Dürrenmatt: Ill is an old man in his seventies who owns a shop in the town of Guellen. Like everyone else, he is very poor. Of all the people in Guellen, he was the closest to Claire Zachanassian, who was his lover when they were young. He got her pregnant and then bribed two men, Koby and Loby, to lie to a judge and say that they had slept with her and thereby avoided any responsibility for the child. Heartbroken, Claire left Guellen and became a prostitute. When she returns decades later, she still holds a bitter grudge against Ill and offers the impoverished town a million dollars if they kill him.",
+  event_time: DateTime.now,
+  date: DateTime.now
+)
+
+
+Event.create!(
+  event_name: "qwrewerwer",
+  event_category: "Theater",
+  organizer: Organizer.first,
+  event_address_title: "Theater am Hechtplatz",
+  event_address_street: "Hechtplatz",
+  event_address_postalcode: 8001,
+  event_address_city: "Zürich",
+  event_description: "VSwiss classic play by Friedrich Dürrenmatt: Ill is an old man in his seventies who owns a shop in the town of Guellen. Like everyone else, he is very poor. Of all the people in Guellen, he was the closest to Claire Zachanassian, who was his lover when they were young. He got her pregnant and then bribed two men, Koby and Loby, to lie to a judge and say that they had slept with her and thereby avoided any responsibility for the child. Heartbroken, Claire left Guellen and became a prostitute. When she returns decades later, she still holds a bitter grudge against Ill and offers the impoverished town a million dollars if they kill him.",
+  event_time: DateTime.now,
+  date: DateTime.now
+)
+
+
+Event.create!(
+  event_name: "Hoi",
+  event_category: "Theater",
+  organizer: Organizer.first,
+  event_address_title: "Theater am Hechtplatz",
+  event_address_street: "Hechtplatz",
+  event_address_postalcode: 8001,
+  event_address_city: "Zürich",
+  event_description: "VSwiss classic play by Friedrich Dürrenmatt: Ill is an old man in his seventies who owns a shop in the town of Guellen. Like everyone else, he is very poor. Of all the people in Guellen, he was the closest to Claire Zachanassian, who was his lover when they were young. He got her pregnant and then bribed two men, Koby and Loby, to lie to a judge and say that they had slept with her and thereby avoided any responsibility for the child. Heartbroken, Claire left Guellen and became a prostitute. When she returns decades later, she still holds a bitter grudge against Ill and offers the impoverished town a million dollars if they kill him.",
+  event_time: DateTime.now,
+  date: DateTime.now
+)
+
+
+Event.create!(
+  event_name: "Sali",
+  event_category: "Theater",
+  organizer: Organizer.first,
+  event_address_title: "Theater am Hechtplatz",
+  event_address_street: "Hechtplatz",
+  event_address_postalcode: 8001,
+  event_address_city: "Zürich",
+  event_description: "VSwiss classic play by Friedrich Dürrenmatt: Ill is an old man in his seventies who owns a shop in the town of Guellen. Like everyone else, he is very poor. Of all the people in Guellen, he was the closest to Claire Zachanassian, who was his lover when they were young. He got her pregnant and then bribed two men, Koby and Loby, to lie to a judge and say that they had slept with her and thereby avoided any responsibility for the child. Heartbroken, Claire left Guellen and became a prostitute. When she returns decades later, she still holds a bitter grudge against Ill and offers the impoverished town a million dollars if they kill him.",
+  event_time: DateTime.now,
+  date: DateTime.now
+)
+
+
+Event.create!(
+  event_name: "Ciao",
+  event_category: "Theater",
+  organizer: Organizer.first,
+  event_address_title: "Theater am Hechtplatz",
+  event_address_street: "Hechtplatz",
+  event_address_postalcode: 8001,
+  event_address_city: "Zürich",
+  event_description: "VSwiss classic play by Friedrich Dürrenmatt: Ill is an old man in his seventies who owns a shop in the town of Guellen. Like everyone else, he is very poor. Of all the people in Guellen, he was the closest to Claire Zachanassian, who was his lover when they were young. He got her pregnant and then bribed two men, Koby and Loby, to lie to a judge and say that they had slept with her and thereby avoided any responsibility for the child. Heartbroken, Claire left Guellen and became a prostitute. When she returns decades later, she still holds a bitter grudge against Ill and offers the impoverished town a million dollars if they kill him.",
+  event_time: DateTime.now,
+  date: DateTime.now
+)
+
+
+Event.create!(
+  event_name: "Salvey",
   event_category: "Theater",
   organizer: Organizer.first,
   event_address_title: "Theater am Hechtplatz",

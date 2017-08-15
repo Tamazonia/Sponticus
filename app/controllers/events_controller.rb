@@ -20,6 +20,9 @@ class EventsController < ApplicationController
       @events = @events.where("DATE(date) = ?", "%#{@date}%")
     end
 
+    @events = Kaminari.paginate_array(@events) if @events.class == Array
+    @events = @events.page(params[:page]).per(9)
+
     categories = []
     @events.each do |event|
       categories << event.event_category
