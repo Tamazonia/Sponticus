@@ -17,82 +17,74 @@
 
 <div class="container fullscreen">
   <div class="row">
-    <nav aria-label="Page navigation">
-      <div class="pagination">
+    <%if @events.empty?%>
+      <p>There are no search results </p>
+    <% else %>
+      <% @events.each do |event| %>
+      <!-- **** to determine the picture that will be shown *** -->
+        <%if event.photo?%>
+          <%photo = event.photo%>
+        <%else%>
+          <%if event.event_category == "Concert"%>
+            <%photo = "band.jpg"%>
+          <%elsif event.event_category == "Theater"%>
+            <%photo = "play.jpg"%>
+          <%else%>
+            <%photo = "opera.jpg"%>
+          <%end%>
+        <%end%>
+      <!-- ****  *** -->
 
+        <div class="col-xs-12 col-sm-4">
 
-        <%if @events.empty?%>
-          <p>There are no search results </p>
-        <% else %>
-          <% @events.each do |event| %>
-          <!-- **** to determine the picture that will be shown *** -->
-            <%if event.photo?%>
-              <%photo = event.photo%>
-            <%else%>
-              <%if event.event_category == "Concert"%>
-                <%photo = "band.jpg"%>
-              <%elsif event.event_category == "Theater"%>
-                <%photo = "play.jpg"%>
-              <%else%>
-                <%photo = "opera.jpg"%>
-              <%end%>
-            <%end%>
-          <!-- ****  *** -->
-
-            <div class="col-xs-12 col-sm-4">
-
-              <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path(photo)%>);">
-                <div class="card-category">
-                  <% if event.tickets.empty?%>
-                    No Tix for sale
-                  <% else %>
-                    CHF <%= event.tickets.last.price %>
-                  <% end %>
-                </div>
-                <div class="card-description">
-                  <h2 class="white"><%=event.event_name%></h2>
-
-                </div>
-                <%=link_to "", event_path(event), class:"card-link" %>
-              </div>
-
-
-              <div class="detail-box">
-                <div class="calendar-box">
-                  <div class="calendar-month">
-                    <p class="no-margin white"><%=event.date.strftime("%B").first(3)%></p>
-                  </div>
-                  <div class="calendar-day">
-                    <p style="margin: 5px 0px 0px 0px;"><%=event.date.strftime("%02d")%></p>
-                  </div>
-                </div>
-
-                <div class="event-local-box">
-                  <div class="upercase ">
-                  <p class="bold" style="margin-bottom: 0;"><%= event.organizer.organizer_name%></p>
-                  </div>
-                  <div class="">
-                    <i class="fa fa-clock-o color-grey" style="padding-right: 2px;">
-                      <span><%= event.event_time.strftime("%H")%>h</span>
-                    </i>
-                    <i class="fa fa-map-marker color-grey" style="padding: 0 2px 0 4px;">
-                        <span><%= event.event_address_city%></span>
-                    </i>
-                  </div>
-                </div>
-
-              </div>
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path(photo)%>);">
+            <div class="card-category">
+              <% if event.tickets.empty?%>
+                No Tix for sale
+              <% else %>
+                CHF <%= event.tickets.last.price %>
+              <% end %>
+            </div>
+            <div class="card-description">
+              <h2 class="white"><%=event.event_name%></h2>
 
             </div>
-          <% end %>
-        <% end %>
+            <%=link_to "", event_path(event), class:"card-link" %>
+          </div>
 
-        <div style="margin: 17px">
-          <%= paginate @events, :theme => 'twitter-bootstrap-3'%>
+          <div class="detail-box">
+            <div class="calendar-box">
+              <div class="calendar-month">
+                <p class="no-margin white"><%=event.date.strftime("%B").first(3)%></p>
+              </div>
+              <div class="calendar-day">
+                <p style="margin: 5px 0px 0px 0px;"><%=event.date.strftime("%02d")%></p>
+              </div>
+            </div>
+
+            <div class="event-local-box">
+              <div class="upercase ">
+              <p class="bold" style="margin-bottom: 0;"><%= event.organizer.organizer_name%></p>
+              </div>
+              <div class="">
+                <i class="fa fa-clock-o color-grey" style="padding-right: 2px;">
+                  <span><%= event.event_time.strftime("%H")%>h</span>
+                </i>
+                <i class="fa fa-map-marker color-grey" style="padding: 0 2px 0 4px;">
+                    <span><%= event.event_address_city%></span>
+                </i>
+              </div>
+            </div>
+
+          </div>
+
         </div>
-      </div>
-    </nav>
-  </div>
+      <% end %>
+    <% end %>
 
+  </div>
+  <div>
+   <%= paginate @events, :theme => 'twitter-bootstrap-3'%>
+  </div>
 
 </div>

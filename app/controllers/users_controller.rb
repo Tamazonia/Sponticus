@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if !@organizer.nil?
       @events = @organizer.events
       @events = Kaminari.paginate_array(@events) if @events.class == Array
-      @events = @events.per_page_kaminari(params[:per_page_kaminari]).per(9)
+      @events = @events.per_page_kaminari(params[:page]).per(9)
       @events = @events.order("date DESC")
     end
 
