@@ -90,6 +90,16 @@ h6 {
   letter-spacing: 0.5px;
 }
 
+table {
+  color: $dark;
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  line-height: 25px;
+  // text-align: left;
+}
+
 .white {
   color: white;
 }

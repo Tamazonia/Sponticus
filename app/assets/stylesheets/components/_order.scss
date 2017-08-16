@@ -1,0 +1,20 @@
+.small-input {
+  width: 50px;
+  height: 31px;
+  padding: 0px;
+  font-size: 15px;
+}
+
+.small-label {
+  font-size: 10px;
+}
+
+.td-small-width {
+  width: 10px;
+}
+
+.td-small-font {
+  @media (max-width: $screen-xs-max) {
+    font-size: 10px !important;
+  }
+}

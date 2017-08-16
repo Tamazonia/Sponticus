@@ -54,6 +54,14 @@ class TicketsController < ApplicationController
   def destroy
   end
 
+  def show
+    @event= Event.find(params[:event_id])
+    @ticket = @event.tickets.last
+    @orders = @ticket.orders
+
+
+  end
+
   private
 
   def ticket_params

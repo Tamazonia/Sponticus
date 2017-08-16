@@ -37,7 +37,19 @@
                 <p class="hightspace"><%=@event.date.strftime("%02d")%></p>
                 <h2 style="margin-bottom: 0px; color: black;"><%=@event.event_name%></h2>
                 <h5 style="margin: 0px 0px 30px 0px;"><%=@event.organizer.organizer_name%></h5>
+                <div>
+                  <% if @event.organizer.user == current_user %>
+                    <p> <%= link_to "Edit Event", edit_event_path(@event)%> </p>
+                    <% if @event.tickets.empty?%>
+                      <p> <%=link_to "Add Ticket", new_event_ticket_path(@event) %> </p>
+                    <% else %>
+                      <p> <%=link_to "Edit Ticket", edit_event_ticket_path(@event) %> </p>
+                      <p> <%=link_to "Mark visitors", event_ticket_path(@event) %> </p>
+                    <% end %>
+                  <%end%>
+                </div>
               </div>
+
             </div>
           </div>
 
@@ -108,19 +120,7 @@
                     <p class="no-margin"><%= @event.event_address_postalcode%> <%= @event.event_address_city%> </p>
                   </div>
 
-                  <div>
-                    <% if @event.organizer.user == current_user %>
-                      <p style="font-weight: bold; padding-top: 5px;"> This is your event. Do you want to edit it?</p>
-                      <p> <%= link_to "Edit Event", edit_event_path(@event)%> </p>
 
-                      <% if @event.tickets.empty?%>
-                      <p> <%=link_to "Add Ticket", new_event_ticket_path(@event) %> </p>
-                      <% else %>
-                      <span> <%=link_to "Edit Ticket", edit_event_ticket_path(@event) %> </span>
-                      <% end %>
-                    <%end%>
-
-                  </div>
 
                 </div>
               </div>

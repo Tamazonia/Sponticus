@@ -17,49 +17,51 @@
     <div class="container">
         <div class="row header">
           <div class="tab-content" id="events">
-            <% if current_user.organizer %>
+            <div class="container">
+              <% if current_user.organizer %>
 
-              <% if @organizer.events.nil?  %>
-                <p>You do not have any Events</p>
-              <% else %>
-                  <table id="my-table" class="table">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Tickets?</th>
-                        <th>Price CHF</th>
-                        <th>Sold</th>
-                        <th>You earned</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                      <% @events.each do |event| %>
-
+                <% if @organizer.events.nil?  %>
+                  <p>You do not have any Events</p>
+                <% else %>
+                    <table id="my-table" class="table">
+                      <thead>
                         <tr>
-                          <td><%= link_to event.event_name, event_path(event) %> </td>
-                          <td><%= event.date.strftime("%d.%m.%Y")%> </td>
-                          <td><%= event.tickets.empty? ? "No" : "Yes" %> </td>
-                          <td><%= event.tickets.last ? event.tickets.last.price : "-" %> </td>
-                          <td><%= event.tickets.last ? "#{event.tickets.last.amount_tickets_sold}/#{event.tickets.last.amount_tickets_to_sell}" : "-" %></td>
-                          <td><%= event.tickets.last ? event.tickets.last.amount_tickets_sold * event.tickets.last.price : "-" %></td>
-
-                          <td>
-                          </td>
+                          <th>Name</th>
+                          <th>Date</th>
+                          <th>Tickets?</th>
+                          <th>Price CHF</th>
+                          <th>Sold</th>
+                          <th>You earned</th>
                         </tr>
-                      <%end%>
-                    </tbody>
-                  </table>
-                      <%= paginate @events%>
-              <% end %>
+                      </thead>
+                      <tbody>
 
-            <% else %>
-              <p>You are not an signed-up as an Organizer, so you cannot create events. Would you like to create Events</p>
-              <%= link_to "Become an Organizer", new_organizer_path%>
-              <br>
-              <br>
-            <% end %>
+                        <% @events.each do |event| %>
+
+                          <tr>
+                            <td><%= link_to event.event_name, event_path(event) %> </td>
+                            <td><%= event.date.strftime("%d.%m.%Y")%> </td>
+                            <td><%= event.tickets.empty? ? "No" : "Yes" %> </td>
+                            <td><%= event.tickets.last ? event.tickets.last.price : "-" %> </td>
+                            <td><%= event.tickets.last ? "#{event.tickets.last.amount_tickets_sold}/#{event.tickets.last.amount_tickets_to_sell}" : "-" %></td>
+                            <td><%= event.tickets.last ? event.tickets.last.amount_tickets_sold * event.tickets.last.price : "-" %></td>
+
+                            <td>
+                            </td>
+                          </tr>
+                        <%end%>
+                      </tbody>
+                    </table>
+                        <%= paginate @events, theme: 'twitter-bootstrap-3'%>
+                <% end %>
+
+              <% else %>
+                <p>You are not an signed-up as an Organizer, so you cannot create events. Would you like to create Events</p>
+                <%= link_to "Become an Organizer", new_organizer_path%>
+                <br>
+                <br>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
