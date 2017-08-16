@@ -3,8 +3,9 @@ class Order < ApplicationRecord
   belongs_to :user
   monetize :amount_cents
 
-  after_save :send_sold_email
+  after_create :send_sold_email
   after_save :reduce_spare_ticket, if: :state_changed?
+  after_create :noone_arrived
 
   private
 
@@ -21,6 +22,11 @@ class Order < ApplicationRecord
         @ticket.amount_tickets_spare = @ticket.amount_tickets_to_sell - @ticket.amount_tickets_sold
         @ticket.save
       end
+  end
+
+  def noone_arrived
+    self.arrived = 0
+    self.save
   end
 
 

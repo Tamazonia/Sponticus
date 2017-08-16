@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
 
+
+
   def create
 
     @ticket = Ticket.find(params[:ticket_id])
@@ -32,5 +34,26 @@ class OrdersController < ApplicationController
   redirect_to order_path(@order)
   # redirect_to order_path(@order.id)
   end
+
+  def edit
+    #@order= Order.find(params[:ticket_id][:order_id])
+  end
+
+  def update
+    # @order= Order.find(params[:ticket_id][:order_id])
+    @order= Order.find(params[:id])
+    @order.update(order_params)
+    @ticket = @order.ticket
+    @event = @ticket.event
+
+    redirect_to event_ticket_path(@event)
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:arrived)
+  end
+
 
 end

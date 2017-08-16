@@ -1,2 +1,33 @@
-<h1>Tickets#show</h1>
-<p>Find me in app/views/tickets/show.html.erb</p>
+<div class="container fullscreen">
+  <div class="row">
+
+    <h1><%=@event.event_name%></h1>
+
+    <h2>Visitors</h2>
+
+    <table class= "table td-small-font">
+      <thead>
+        <tr>
+          <th>Visitor Email </th>
+          <th>Bought Tickets </th>
+          <th>Arrived Visitors </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @orders.each do |order|%>
+          <tr>
+            <td class="td-small-font"><%= order.user.email%></td>
+            <td class="td-small-width"><%=order.quantity%></td>
+
+            <%= simple_form_for [order], method: :patch, html: {class: "form-inline"} do |f| %>
+              <td><%= f.input :arrived, collection: 0..order.quantity, input_html: {class: "small-input"}, label: false%></td>
+              <td><%= f.submit "Save", class: "btn btn-primary btn-sm"%></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
