@@ -20,6 +20,8 @@ class EventsController < ApplicationController
       @events = @events.where("DATE(date) = ?", "%#{@date}%")
     end
 
+    @events = Kaminari.paginate_array(@events) if @events.class == Array
+    @events = @events.per_page_kaminari(params[:page]).per(9)
 
     categories = []
     @events.each do |event|
@@ -27,24 +29,16 @@ class EventsController < ApplicationController
     end
     @categories = categories.uniq
 
-    @events = Kaminari.paginate_array(@events) if @events.class == Array
-    @events = @events.per_page_kaminari(params[:per_page_kaminari]).per(9)
   end
 
   def show
     @event = Event.find(params[:id])
     @ticket = @event.tickets.last
     @order = Order.new(ticket: @ticket)
-    # @event_coordinates = { lat: @event.latitude, lng: @event.longitude }
-    # @events = @event
-
-
-    # @events = Event.where.not(latitude: nil, longitude: nil)
 
     @hash = Gmaps4rails.build_markers(@event) do |event, marker|
       marker.lat event.latitude
       marker.lng event.longitude
-      # marker.infowindow render_to_string(partial: "/flats/map_box", locals: { flat: flat })
     end
   end
 
@@ -79,12 +73,6 @@ class EventsController < ApplicationController
     else
       redirect_to edit_event_path(@event)
     end
-
-
-
-
-
-
   end
 
   def destroy
