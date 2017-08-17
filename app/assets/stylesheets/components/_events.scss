@@ -1,0 +1,16 @@
+.hide_filter {
+  @media (max-width: $screen-xs-max) {
+    height: 0px;
+  }
+}
+
+
+.filter-wrapper {
+   @media (max-width: $screen-xs-max) {
+    padding-top: 12px;
+    padding-bottom: 0px;
+  }
+  background-color: $light-gray;
+  padding: 12px;
+  text-align: center;
+}

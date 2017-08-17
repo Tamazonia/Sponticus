@@ -31,8 +31,8 @@
   }
   height: 38px;
   border-radius: 3px;
-  border: solid;
-  border-width: 1px;
+  // border: solid;
+  border-width: 0.5px;
   padding-left: 10px;
   min-width: 35vh;
   margin: 0px;
@@ -46,11 +46,7 @@
 }
 
 
-.filter-wrapper {
-  background-color: $light-gray;
-  padding: 12px;
-  text-align: center;
-}
+
 
 
 // select#search-category.search-input{
