@@ -43,7 +43,6 @@
                   <%end%>
                 </div>
               </div>
-
             </div>
           </div>
 
@@ -108,6 +107,7 @@
                     <p class="no-margin"><%= @event.event_address_title%></p>
                     <p class="no-margin"><%= @event.event_address_street%></p>
                     <p class="no-margin"><%= @event.event_address_postalcode%> <%= @event.event_address_city%> </p>
+                    <p class="no-margin"><%= link_to @event.event_link, "#{@event.event_link}", :target => "_blank"%> </p>
                   </div>
 
 
