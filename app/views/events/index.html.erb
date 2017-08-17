@@ -4,14 +4,39 @@
 
 <div class="filter-wrapper home-navbar-margin">
   <div class="container">
-    <div class="search-form">
+    <div class="search-form hidden-xs filter">
       <%= simple_form_for :event_search, url: events_path, method: :get, html: {class: 'form-inline'} do |f| %>
         <%= f.input :event_name, placeholder: "Search for Event Name", label: false, input_html: {value: @name, class: 'search-input'} %>
         <%= f.input :event_category, prompt: "Search for Category", label: false, collection: @categories, :selected => @category, input_html:{class: 'search-input'}%>
         <%= f.input :event_date, prompt: "Search for Date", as: :string, label: false, input_html: {type: :date, value: @date, class: 'search-input'}%>
         <%= f.submit "Find", class:"btn btn-primary" %>
       <% end %>
+
+
     </div>
+
+      <p class="hidden-md hidden-sm hidden-lg open-filter"> <i class="fa fa-search-plus" aria-hidden="true"></i> Filter your results</p>
+      <p class="hidden-xs hidden-md hidden-sm hidden-lg close-filter" style="padding-top: 9px;"> <i class="fa fa-search-minus" aria-hidden="true"></i> Close filter </p>
+
+      <% content_for :after_js do %>
+
+      <script type="text/javascript">
+          $(document).ready(function() {
+            $('.open-filter').on('click', function(event) {
+              $('.filter').removeClass("hidden-xs");
+              $('.open-filter').addClass("hidden-xs");
+              $('.close-filter').removeClass("hidden-xs");
+            });
+
+            $('.close-filter').on('click', function(event) {
+              $('.close-filter').addClass("hidden-xs");
+              $('.open-filter').removeClass("hidden-xs");
+              $('.filter').addClass("hidden-xs");
+            });
+          });
+      </script>
+
+      <%end%>
   </div>
 </div>
 

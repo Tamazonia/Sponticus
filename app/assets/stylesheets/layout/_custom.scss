@@ -6,11 +6,23 @@ html {
 }
 
 body {
-  @media (max-width: 978px) {
+  @media (max-width: $screen-sm-max) {
     padding:0 !important;
   }
   padding-top: 70px;
   height: 100%;
+}
+
+form {
+  @media (max-width: $screen-sm-max) {
+    font-size:12px !important;
+  }
+  color: $dark;
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  line-height: 25px;
 }
 
 p {
