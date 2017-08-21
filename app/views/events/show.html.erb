@@ -3,7 +3,7 @@
   Sponticus - <%=@event.event_name%>
 <% end %>
 
-    <div class="container">
+    <div class="container home-navbar-margin">
       <div class="row">
         <div class="box">
 
@@ -32,15 +32,18 @@
                 <h2 style="margin-bottom: 0px; color: black;"><%=@event.event_name%></h2>
                 <h5 style="margin: 0px 0px 30px 0px;"><%=@event.organizer.organizer_name%></h5>
                 <div>
-                  <% if @event.organizer.user == current_user %>
-                    <p> <%= link_to "Edit Event", edit_event_path(@event)%> </p>
-                    <% if @event.tickets.empty?%>
-                      <p> <%=link_to "Add Ticket", new_event_ticket_path(@event) %> </p>
-                    <% else %>
-                      <p> <%=link_to "Edit Ticket", edit_event_ticket_path(@event) %> </p>
-                      <p> <%=link_to "Mark visitors", event_ticket_path(@event) %> </p>
+                    <% if policy(@event).edit? %>
+                      <p><%= link_to "Edit Event", edit_event_path(@event) %></p>
+                      <% if @event.tickets.empty?%>
+                        <p> <%=link_to "Add Ticket", new_event_ticket_path(@event) %> </p>
+                      <% else %>
+                        <p> <%=link_to "Edit Ticket", edit_event_ticket_path(@event) %> </p>
+                        <p> <%=link_to "Mark visitors", event_ticket_path(@event) %> </p>
+                      <% end %>
                     <% end %>
-                  <%end%>
+                  <%# if @event.organizer.user == current_user %>
+                    <!-- <p> <%= link_to "Edit Event", edit_event_path(@event)%> </p> -->
+                  <%#end%>
                 </div>
               </div>
             </div>

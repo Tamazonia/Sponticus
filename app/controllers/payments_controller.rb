@@ -1,13 +1,18 @@
 class PaymentsController < ApplicationController
 
   before_action :set_order
+  skip_after_action :verify_policy_scoped
 
   def new
-    # -------- working for one purchase only -------------
-    # -------- working for one purchase only -------------
+
   end
 
   def create
+
+    # skip_after_action :verify_authorized
+    # authorize charge
+    # authorize customer
+    # authorize payment
     customer = Stripe::Customer.create(
     source: params[:stripeToken],
     email:  params[:stripeEmail]
@@ -20,6 +25,7 @@ class PaymentsController < ApplicationController
     currency:     @order.amount.currency
   )
 
+   authorize @order
   @order.update(payment: charge.to_json, state: 'paid')
   redirect_to order_path(@order)
 

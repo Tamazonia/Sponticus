@@ -20,6 +20,7 @@ gem "coffee-rails"
 gem "gmaps4rails"
 gem "kaminari"
 gem 'bootstrap-kaminari-views'
+gem "pundit"
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"

@@ -9,13 +9,16 @@ class OrdersController < ApplicationController
     order_quantity = params[:order_quantity]
 
 
-    @order  = Order.create!(  ticket_sku: @ticket.sku,
+
+    @order  = Order.new(  ticket_sku: @ticket.sku,
                           unit_price_cents: @ticket.price,
                           quantity: order_quantity.first.to_i,
                           amount: @ticket.price*order_quantity.first.to_i,
                           state: 'pending',
                           ticket: @ticket,
                           user: current_user)
+    authorize @order
+    @order.save
 
     redirect_to new_order_payment_path(@order)
 
@@ -23,6 +26,8 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.where(state: 'paid').find(params[:id])
+    authorize @order
+
   end
 
   def send_confirmation_mail
@@ -36,11 +41,10 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    #@order= Order.find(params[:ticket_id][:order_id])
+
   end
 
   def update
-    # @order= Order.find(params[:ticket_id][:order_id])
     @order= Order.find(params[:id])
     @order.update(order_params)
     @ticket = @order.ticket
