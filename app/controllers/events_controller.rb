@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   def index
     @search = Search.new
     @events = Event.all
+    @events = policy_scope(Event)
 
     if params[:event_search] && params[:event_search][:event_name].present?
       @name = params[:event_search][:event_name]
@@ -33,6 +34,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    authorize @event
     @ticket = @event.tickets.last
     @order = Order.new(ticket: @ticket)
 
@@ -44,10 +46,12 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    authorize @event
   end
 
   def create
     @event = Event.new(event_params)
+    authorize @event
     @event.organizer = current_user.organizer
     @event.save
     if @event.save
@@ -63,10 +67,12 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    authorize @event
   end
 
   def update
     @event = Event.find(params[:id])
+    authorize @event
     @event.update(event_params)
     if @event.save
         redirect_to event_path(@event)

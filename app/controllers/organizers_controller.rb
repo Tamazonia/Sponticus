@@ -8,11 +8,13 @@ class OrganizersController < ApplicationController
 
   def new
     @organizer = Organizer.new
+    authorize @organizer
   end
 
   def create
     @organizer = Organizer.new(organizer_params)
     @organizer.user = current_user
+    authorize @organizer
     @organizer.save
     if @organizer.save
       redirect_to user_path(current_user)
@@ -23,11 +25,13 @@ class OrganizersController < ApplicationController
 
   def edit
     @organizer = Organizer.find(params[:id])
+    authorize @organizer
   end
 
   def update
     @organizer = Organizer.find(params[:id])
     @organizer.update(organizer_params)
+    authorize @organizer
     if @organizer.save
       redirect_to user_path(current_user)
     else
