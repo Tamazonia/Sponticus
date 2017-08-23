@@ -1,0 +1,9 @@
+
+<%= simple_form_for [@organizer] do |f| %>
+  <%= f.input :organizer_name, placeholder: "Operettenbühne Hombrechtikon", label: "Organizer Name" %>
+
+  <%= f.input :organizer_address_street, placeholder: "Felsenegg 29", label: "Street / Number" %>
+  <%= f.input :organizer_address_postalcode, placeholder: "8008" , label: "Postal Code" %>
+  <%= f.input :organizer_address_city, placeholder: "Zürich" , label: "City" %>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>
