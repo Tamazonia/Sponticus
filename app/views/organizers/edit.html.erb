@@ -1,16 +1,10 @@
-<div class="container">
+<div class="container fullscreen">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1>Edit your information</h1>
-          <%= simple_form_for [@organizer] do |f| %>
-            <%= f.input :organizer_name, placeholder: "Operettenbühne Hombrechtikon", label: "Organizer Name" %>
-
-            <%= f.input :organizer_address_street, placeholder: "Felsenegg 29", label: "Street / Number" %>
-            <%= f.input :organizer_address_postalcode, placeholder: "8008" , label: "Postal Code" %>
-            <%= f.input :organizer_address_city, placeholder: "Zürich" , label: "City" %>
-            <%= f.submit "Edit", class: "btn btn-primary" %>
-          <% end %>
-        <br>
+      <div class="form-login home-navbar-margin">
+        <h1>Edit your information</h1>
+          <%= render 'edit_new_organizer'%>
+      </div>
     </div>
   </div>
 </div>

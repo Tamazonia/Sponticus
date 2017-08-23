@@ -1,0 +1,12 @@
+<%= simple_form_for [@event, @ticket] do |f| %>
+  <%= f.input :amount_tickets_to_sell, placeholder: "How many tickets would you like to sell?" %>
+  <%= f.input :price,  label: "Choose your price (CHF)", prompt: "How much should one ticket cost?" %>
+  <%= f.submit "Save Sponti Ticket", class: "btn btn-primary" %>
+  <% if @ticket.errors.any? %>
+    <!-- <div id="error_explanation"> -->
+    <ul>
+      <% @ticket.errors.full_messages.each do |message| %>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
