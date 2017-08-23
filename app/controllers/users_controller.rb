@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def show
     #@user = User.find(params[:id])
     @user = current_user
+    authorize @user
     @organizer = @user.organizer
     @orders = @user.orders
 
@@ -11,9 +12,6 @@ class UsersController < ApplicationController
       @events = @events.per_page_kaminari(params[:page]).per(9)
       @events = @events.order("date DESC")
     end
-
-
-
 
   end
 end

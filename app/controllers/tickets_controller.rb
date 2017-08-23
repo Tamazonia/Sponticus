@@ -9,6 +9,7 @@ class TicketsController < ApplicationController
     # do i really need that or can I do this on events similar as we did Review for the Doctor?
     @event= Event.find(params[:event_id])
     @ticket = Ticket.new
+    authorize @ticket
 
     # why organizer? for me more logical event
     # @ticket = @event.build_organizer
@@ -23,6 +24,7 @@ class TicketsController < ApplicationController
     @ticket.amount_tickets_spare = @ticket.amount_tickets_to_sell
     @ticket.amount_tickets_sold = 0
     @ticket.event = @event
+    authorize @ticket
     @ticket.save
 
 
@@ -38,14 +40,16 @@ class TicketsController < ApplicationController
   def edit
     @event= Event.find(params[:event_id])
     @ticket = @event.tickets.last
+    authorize @ticket
   end
 
   def update
     @event= Event.find(params[:event_id])
     @ticket = @event.tickets.last
+    authorize @ticket
     @ticket.update(ticket_params)
     if @ticket.save
-      redirect_to user_path(current_user)
+      redirect_to event_path(@event)
     else
       redirect_to edit_event_ticket_path(@event)
     end
@@ -57,8 +61,8 @@ class TicketsController < ApplicationController
   def show
     @event= Event.find(params[:event_id])
     @ticket = @event.tickets.last
+    authorize @ticket
     @orders = @ticket.orders
-
 
   end
 
