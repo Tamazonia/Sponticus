@@ -60,7 +60,7 @@
               <% if event.tickets.empty?%>
                 No Tix for sale
               <% else %>
-                CHF <%= event.tickets.last.price %>
+                <%= humanized_money_with_symbol(event.tickets.last.price) %>
               <% end %>
             </div>
             <div class="card-description">
