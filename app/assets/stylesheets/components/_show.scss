@@ -15,8 +15,8 @@
 // }
 
 .box {
-  @media (max-width: $screen-sm-max) {
-    margin-top: 70px;
+  @media (max-width: $screen-xs-max) {
+    margin-top: 0px;
   }
 
   margin-top: 50px;

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @organizer = @user.organizer
     @orders = @user.orders
 
+
     if !@organizer.nil?
       @events = @organizer.events
       @events = Kaminari.paginate_array(@events) if @events.class == Array
