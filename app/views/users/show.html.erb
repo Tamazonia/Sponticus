@@ -28,10 +28,12 @@
                         <tr>
                           <th>Name</th>
                           <th>Date</th>
+                          <th>Status</th>
                           <th>Tickets?</th>
                           <th>Current Price CHF</th>
                           <th>Sold</th>
                           <th>You earned</th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -41,10 +43,10 @@
                           <tr>
                             <td><%= link_to event.event_name, event_path(event) %> </td>
                             <td><%= event.date.strftime("%d.%m.%Y")%> </td>
+                            <td><%= event.active ? "active" : "inactive" %></td>
                             <td><%= event.tickets.empty? ? "No" : "Yes" %> </td>
                             <td><%= event.tickets.last ? humanized_money_with_symbol(event.tickets.last.price): "-" %> </td>
                             <td><%= event.tickets.last ? "#{event.tickets.last.amount_tickets_sold}/#{event.tickets.last.amount_tickets_to_sell}" : "-" %></td>
-                            <%#= event.tickets.last ? event.tickets.last.amount_tickets_sold * event.tickets.last.price : "-" %>
                             <% if event.tickets.last %>
                               <% orders = event.tickets.last.orders %>
                               <% earnings = 0 %>
@@ -53,9 +55,9 @@
                               <% end %>
                               <td> <%= earnings %> </td>
                             <% end %>
+                            <td></td>
 
-                            <td>
-                            </td>
+
                           </tr>
                         <%end%>
                       </tbody>

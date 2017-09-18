@@ -70,12 +70,13 @@ class EventsController < ApplicationController
     authorize @event
   end
 
+
   def update
     @event = Event.find(params[:id])
     authorize @event
     @event.update(event_params)
     if @event.save
-        redirect_to event_path(@event)
+      redirect_to event_path(@event)
     else
       redirect_to edit_event_path(@event)
     end
@@ -84,11 +85,18 @@ class EventsController < ApplicationController
   def destroy
   end
 
+  def deactivate
+    @event = Event.find(params[:id])
+    authorize @event
+    @event.active = false
+    @event.save
+    # redirect_to user_path(current_user)
+  end
 
   private
 
   def event_params
-    params.require(:event).permit(:event_name, :event_category, :event_description, :event_address_title, :event_address_street, :event_address_postalcode, :event_address_city, :initial_added_tickets, :date, :event_time, :event_link, :photo, :photo_cache)
+    params.require(:event).permit(:event_name, :event_category, :event_description, :event_address_title, :event_address_street, :event_address_postalcode, :event_address_city, :initial_added_tickets, :date, :event_time, :event_link, :photo, :photo_cache, :active)
   end
 
 end

@@ -34,6 +34,7 @@
                 <div>
                     <% if policy(@event).edit? %>
                       <p><%= link_to "Edit Event", edit_event_path(@event) %></p>
+                      <p type="button" data-toggle="modal" data-target="#myModal"> Delete Event</p>
                       <% if @event.tickets.empty?%>
                         <p> <%=link_to "Add Ticket", new_event_ticket_path(@event) %> </p>
                       <% else %>
@@ -41,9 +42,7 @@
                         <p> <%=link_to "Mark visitors", event_ticket_path(@event) %> </p>
                       <% end %>
                     <% end %>
-                  <%# if @event.organizer.user == current_user %>
-                    <!-- <p> <%= link_to "Edit Event", edit_event_path(@event)%> </p> -->
-                  <%#end%>
+
                 </div>
               </div>
             </div>
@@ -120,6 +119,7 @@
             </div>
           </div>
 
+
           <%if @event.latitude.present?%>
             <div id="map"></div>
           <%end%>
@@ -146,3 +146,27 @@
       </div> <!-- row -->
     </div> <!-- container -->
 
+          <!-- MODAL -->
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title"> Delete Event <%= @event.event_name %></h4>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to delete this event?</p>
+                  <% if !(@event.tickets.empty?)%>
+                    <%if !(@event.tickets.last.orders.empty?)%>
+                      <p>You have already sold <%=@event.tickets.last.orders.count%> tickets for this event. You still have to provide service to those customers</p>
+                    <%end%>
+                  <% end %>
+                  <%= link_to "Delete Event", deactivate_event_path(@event), class: "btn btn-danger" %>
+                </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END MODAL -->

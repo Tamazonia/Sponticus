@@ -15,6 +15,10 @@ class EventPolicy < ApplicationPolicy
 
   def update?
     record.organizer.user == user
-
   end
+
+  def deactivate?
+    record.organizer.user == user
+  end
+
 end
