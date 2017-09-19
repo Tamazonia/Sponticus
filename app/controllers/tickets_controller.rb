@@ -2,9 +2,6 @@ class TicketsController < ApplicationController
   def index
   end
 
-  def show
-  end
-
   def new
     # do i really need that or can I do this on events similar as we did Review for the Doctor?
     @event= Event.find(params[:event_id])
@@ -59,11 +56,10 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @event= Event.find(params[:event_id])
-    @ticket = @event.tickets.last
+    @event = Event.find(params[:event_id])
+    @ticket = @event.tickets.find(params[:id])
     authorize @ticket
     @orders = @ticket.orders
-
   end
 
   private

@@ -90,7 +90,7 @@ class EventsController < ApplicationController
     authorize @event
     @event.active = false
     @event.save
-    # redirect_to user_path(current_user)
+    redirect_to user_path(current_user)
   end
 
   private

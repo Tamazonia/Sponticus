@@ -34,12 +34,12 @@
                 <div>
                     <% if policy(@event).edit? %>
                       <p><%= link_to "Edit Event", edit_event_path(@event) %></p>
-                      <p type="button" data-toggle="modal" data-target="#myModal"> Delete Event</p>
+                      <p type="button" data-toggle="modal" data-target="#deleteEventModal"> Delete Event</p>
                       <% if @event.tickets.empty?%>
                         <p> <%=link_to "Add Ticket", new_event_ticket_path(@event) %> </p>
                       <% else %>
                         <p> <%=link_to "Edit Ticket", edit_event_ticket_path(@event) %> </p>
-                        <p> <%=link_to "Mark visitors", event_ticket_path(@event) %> </p>
+                        <p> <%=link_to "Mark visitors", event_ticket_path(@event, @event.tickets.last) %> </p>
                       <% end %>
                     <% end %>
 
@@ -147,7 +147,7 @@
     </div> <!-- container -->
 
           <!-- MODAL -->
-          <div id="myModal" class="modal fade" role="dialog">
+          <div id="deleteEventModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -161,7 +161,7 @@
                       <p>You have already sold <%=@event.tickets.last.orders.count%> tickets for this event. You still have to provide service to those customers</p>
                     <%end%>
                   <% end %>
-                  <%= link_to "Delete Event", deactivate_event_path(@event), class: "btn btn-danger" %>
+                  <%= link_to "Delete Event", deactivate_event_path(@event), class: "btn btn-danger", "data-method" => :patch %>
                 </div>
 
 
