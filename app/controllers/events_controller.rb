@@ -7,18 +7,18 @@ class EventsController < ApplicationController
     @events = policy_scope(Event)
 
     if params[:event_search] && params[:event_search][:event_name].present?
-      @name = params[:event_search][:event_name]
-      @events = @events.where("event_name ILIKE  ?", "%#{@name}%")
+      @event_name = params[:event_search][:event_name]
+      @events = @events.where("event_name ILIKE  ?", "%#{@event_name}%")
     end
 
     if params[:event_search] && params[:event_search][:event_category].present?
-      @category = params[:event_search][:event_category]
-      @events = @events.where("event_category ILIKE  ?", "%#{@category}%")
+      @event_category = params[:event_search][:event_category]
+      @events = @events.where("event_category ILIKE  ?", "%#{@event_category}%")
     end
 
     if params[:event_search] && params[:event_search][:event_date].present?
-      @date = params[:event_search][:event_date]
-      @events = @events.where("DATE(date) = ?", "%#{@date}%")
+      @event_date = params[:event_search][:event_date]
+      @events = @events.where("DATE(date) = ?", Date.parse(@event_date))
     end
 
     @events = Kaminari.paginate_array(@events) if @events.class == Array
@@ -90,7 +90,7 @@ class EventsController < ApplicationController
     authorize @event
     @event.active = false
     @event.save
-    # redirect_to user_path(current_user)
+    redirect_to user_path(current_user)
   end
 
   private

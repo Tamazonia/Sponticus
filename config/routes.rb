@@ -18,14 +18,11 @@ Rails.application.routes.draw do
   # end
 
   resources :events do
-      member do
-        get "deactivate"
+    member do
+      patch "deactivate"
     end
-  end
 
-  resources :events do
-      resources :tickets do
-    end
+    resources :tickets
   end
 
 
