@@ -1,7 +1,25 @@
 
 <%= simple_form_for :event_search, url: events_path, method: :get, html: {class: 'form-inline'} do |f| %>
-  <%= f.input :event_name, placeholder: "Search for Event Name", label: false, input_html: {class: 'search-input'} %>
-  <%= f.input :event_category, prompt: "Search for Category", label: false, collection: @categories, input_html: {class: 'search-input'}%>
-  <%= f.input :event_date, as: :string, label: false, input_html: { class: 'search-input'}, placeholder: "Search for Date"%>
+  <%= f.input :event_name, placeholder: "Search for Event Name", label: false, input_html: {value: @event_name, class: 'search-input'} %>
+  <%= f.input :event_category, prompt: "Search for Category", label: false, collection: @categories, input_html: {value: @event_category, class: 'search-input'}%>
+  <%=
+    f.input(
+      :event_date,
+      as: :string,
+      label: false,
+      input_html: {
+        value: @event_date,
+        class: 'search-input datedropper',
+        data: {
+          "init-set" => "false",
+          "large-mode" => "true",
+          "large-default" => "true",
+          "lang" => "pt-BR",
+          "format" => "d/m/Y",
+        }
+      },
+      placeholder: "Search for Date"
+    )
+  %>
   <%= f.submit "Find", class:"btn btn-primary" %>
 <% end %>
