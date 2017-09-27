@@ -1,35 +1,48 @@
-<div class="container">
-  <h1>Purchase of ticket <%= @order.ticket.event.event_name %></h1>
-
-  <% if @order.quantity <= @order.ticket.amount_tickets_spare %>
-    <%= form_tag order_payments_path(@order) do %>
-
-      <article>
-        <label class="amount">
-          <p> Price per Ticket: <%= humanized_money_with_symbol(@order.unit_price_cents) %></p>
-          <p> Quantity of Tickets ordered: <%= @order.quantity%> </p>
-          <p> Total: <%= humanized_money_with_symbol(@order.amount) %></p>
-        </label>
-      </article>
-
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-        data-name="My Ticket"
-        data-email="<%= current_user.email %>"
-        data-description="Ticket <%= @order.ticket_sku %>"
-        data-amount="<%= @order.amount_cents %>"
-        data-currency="<%= @order.amount.currency %>"></script>
 
 
-        <p class="p-small-dark"><strong> Fine-print about your sponti evening</strong></p>
-          <ul class="ul-small">
-            <li>You can get your ticket with the confirmation email at the Entrance</li>
-            <li>You can choose any available seat upon arrival (first come first serve)</li>
-            <li>It cannot be guaranteed that you can sit next to each other</li>
-          </ul>
 
-    <% end %>
-  <% else %>
-    <p> There are not enough Tickets left </p>
-  <% end %>
+
+<div class="container fullscreen home-navbar-margin">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="form-login home-navbar-margin">
+
+        <h1>Purchase of ticket <%= @order.ticket.event.event_name %></h1>
+
+        <% if @order.quantity <= @order.ticket.amount_tickets_spare %>
+          <%= form_tag order_payments_path(@order) do %>
+
+            <article>
+              <label class="amount">
+                <p> Price per Ticket: <%= humanized_money_with_symbol(@order.unit_price_cents) %></p>
+                <p> Quantity of Tickets ordered: <%= @order.quantity%> </p>
+                <p> Total: <%= humanized_money_with_symbol(@order.amount) %></p>
+              </label>
+            </article>
+
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-name="My Ticket"
+              data-email="<%= current_user.email %>"
+              data-description="Ticket <%= @order.ticket_sku %>"
+              data-amount="<%= @order.amount_cents %>"
+              data-currency="<%= @order.amount.currency %>"></script>
+
+
+              <p class="p-small-dark"><strong> Fine-print about your sponti evening</strong></p>
+                <ul class="ul-small">
+                  <li>You can get your ticket with the confirmation email at the Entrance</li>
+                  <li>You can choose any available seat upon arrival (first come first serve)</li>
+                  <li>It cannot be guaranteed that you can sit next to each other</li>
+                </ul>
+
+          <% end %>
+        <% else %>
+          <p> There are not enough Tickets left </p>
+        <% end %>
+
+
+      </div>
+    </div>
+  </div>
 </div>

@@ -21,6 +21,8 @@ gem "gmaps4rails"
 gem "kaminari"
 gem 'bootstrap-kaminari-views'
 gem "pundit"
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
