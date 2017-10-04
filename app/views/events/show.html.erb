@@ -66,11 +66,9 @@
                   <p>No Tix for sale on Sponticus  </p>
                 <% else %>
                   <% if @event.tickets.last.amount_tickets_spare > 0 %>
-                    <%= form_tag orders_path do %>
-                      <span><%= number_field("order_quantity", @order.quantity, in: 1..@ticket.amount_tickets_spare, value: 2, style: "text-align: right") %> Tickets</span>
-                      <%= hidden_field_tag 'ticket_id', @ticket.id %>
-                      <%= submit_tag 'Purchase', class: 'btn btn-primary', style: "width: 100%; margin-top: 5px;"%>
-                    <% end %>
+                    <button type="button" data-toggle="modal" data-target="#buyEventModal" class="btn-primary" style= "width: 100%; margin-top: 5px;"> Purchase</button>
+
+
                   <% else %>
                     <p> No Sponti Tickets left </p>
                   <%end%>
@@ -89,12 +87,7 @@
 
                   <p style="font-weight: bold; padding-top: 5px;">Description</p>
                   <p><%=@event.event_description%></p>
-                  <p style="font-weight: bold; padding-top: 5px;">Fine Print</p>
-                    <ul class="ul-small">
-                      <li>You can get your ticket with the confirmation email at the Entrance</li>
-                      <li>You can choose any available seat upon arrival (first come first serve)</li>
-                      <li>It cannot be guaranteed that you can sit next to each other</li>
-                    </ul>
+
                 </div>
               </div>
               <div class="col-xs-12 col-sm-4">
@@ -146,7 +139,7 @@
       </div> <!-- row -->
     </div> <!-- container -->
 
-          <!-- MODAL -->
+          <!-- MODAL DELETE -->
           <div id="deleteEventModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -169,4 +162,25 @@
               </div>
             </div>
           </div>
-          <!-- END MODAL -->
+          <!-- END MODAL DELETE -->
+
+          <!-- MODAL BUY -->
+          <div id="buyEventModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title"> How many tickets would you like to buy for "<%= @event.event_name %> "?</h4>
+                </div>
+                <div class="modal-body">
+                    <%= form_tag orders_path do %>
+                      <span><%= number_field("order_quantity", @order.quantity, in: 1..@ticket.amount_tickets_spare, value: 2, style: "text-align: right") %> Tickets</span>
+                      <%= hidden_field_tag 'ticket_id', @ticket.id %>
+                      <%= submit_tag 'Purchase', class: 'btn btn-primary', style: "width: 100%; margin-top: 5px;"%>
+                    <% end %>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!-- END MODAL BUY -->
