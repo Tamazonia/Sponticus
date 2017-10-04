@@ -20,10 +20,14 @@
             <td class="td-small-font"><%= order.user.email%></td>
             <td class="td-small-width"><%=order.quantity%></td>
 
-            <%= simple_form_for [order], method: :patch, html: {class: "form-inline"} do |f| %>
-              <td><%= f.input :arrived, collection: 0..order.quantity, input_html: {class: "small-input"}, label: false%></td>
-              <td><%= f.submit "Save", class: "btn btn-primary btn-sm"%></td>
+
+            <!-- I took the patch method out of the form... maybe needed but seems to work without it -->
+            <%= simple_form_for [order], remote: true, html: {class: "form-inline arrived"} do |f| %>
+              <td><%= f.input :arrived, collection: 0..order.quantity, input_html: {onchange: "this.form.submit();"}%></td>
+              <td><%#= f.submit "Save", class: "btn btn-primary btn-sm"%></td>
             <% end %>
+
+
           </tr>
         <% end %>
       </tbody>
