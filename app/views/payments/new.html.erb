@@ -7,7 +7,7 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <div class="form-login home-navbar-margin">
 
-        <h1>Purchase of ticket <%= @order.ticket.event.event_name %></h1>
+        <h1>Purchase of ticket <%= @order.ticket.event.event_name%> for the <%= @order.ticket.event.date.strftime("%d. %B")%></h1>
 
         <% if @order.quantity <= @order.ticket.amount_tickets_spare %>
           <%= form_tag order_payments_path(@order) do %>
@@ -19,6 +19,8 @@
                 <p> Total: <%= humanized_money_with_symbol(@order.amount) %></p>
               </label>
             </article>
+
+
 
             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
               data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
