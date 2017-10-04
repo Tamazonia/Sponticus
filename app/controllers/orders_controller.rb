@@ -50,7 +50,9 @@ class OrdersController < ApplicationController
     @ticket = @order.ticket
     @event = @ticket.event
 
-    redirect_to event_ticket_path(@event)
+    redirect_to event_ticket_path(@event, @event.tickets.last)
+
+
   end
 
   private

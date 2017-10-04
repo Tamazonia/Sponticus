@@ -57,7 +57,8 @@ class TicketsController < ApplicationController
 
   def show
     @event = Event.find(params[:event_id])
-    @ticket = @event.tickets.find(params[:id])
+    # @ticket = @event.tickets.find(params[:id])
+    @ticket = Ticket.find(params[:id])
     authorize @ticket
     @orders = @ticket.orders
   end
