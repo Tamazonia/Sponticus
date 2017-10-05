@@ -17,6 +17,13 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+
+  # for META TAGS
+  def default_url_options
+  { host: ENV["HOST"] || "localhost:3000" }
+  end
+  # End for META TAGS
+
   private
 
   def skip_pundit?

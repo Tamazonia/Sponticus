@@ -1,0 +1,5 @@
+meta_product_name: "Sponticus"
+meta_title: "Sponticus - Spontaneous cultural events"
+meta_description: "Find cultural events today of which you would never have heard of before"
+meta_image: "concert_hall2.jpg"                       # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"
