@@ -173,11 +173,13 @@
                   <h4 class="modal-title"> How many tickets would you like to buy for "<%= @event.event_name %> "?</h4>
                 </div>
                 <div class="modal-body">
+                  <%if @ticket %>
                     <%= form_tag orders_path do %>
                       <span><%= number_field("order_quantity", @order.quantity, in: 1..@ticket.amount_tickets_spare, value: 2, style: "text-align: right") %> Tickets</span>
                       <%= hidden_field_tag 'ticket_id', @ticket.id %>
                       <%= submit_tag 'Purchase', class: 'btn btn-primary', style: "width: 100%; margin-top: 5px;"%>
                     <% end %>
+                  <%end%>
                 </div>
 
               </div>
